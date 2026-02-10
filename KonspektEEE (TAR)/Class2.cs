@@ -9,7 +9,7 @@ namespace KonspektEEE__TAR_
     internal class Osa2_funktsioonid
     {
 
-        public static void Juku(string nimi1 = "Juku")
+        public static void Juku(string nimi1 )
         {
             Console.WriteLine("mis on sinu nimi?");
             string nimi = Console.ReadLine();
