@@ -7,7 +7,7 @@ namespace KonspektEEE__TAR_
 {
     internal class Naidis_fnktsion
     {
-        public static float Summa (float arv1, float arv2)
+        public static float Summa(float arv1, float arv2)
         {
             return arv1 + arv2;
         }
@@ -61,5 +61,17 @@ namespace KonspektEEE__TAR_
             }
             return hoo;
         }
+
+        public static int[] masiv1(int[] masiv)
+        {
+            Console.WriteLine("сколько ячеек в масиве");
+            masiv = new int[Convert.ToInt32(Console.ReadLine())];
+            for (int i = 0; i < masiv.Length; i++)
+            {
+                Console.WriteLine($"записать в масив в ячейку {i} из {masiv.Length}");
+                masiv[i] = int.Parse(Console.ReadLine());
+            }
+            return masiv;
+        } 
     }
 }

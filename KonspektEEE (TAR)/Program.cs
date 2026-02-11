@@ -10,6 +10,8 @@ namespace Naidis_IKTpv25
     {              
         public static void Main(string[] args)
         {
+            Masiv123.Masivvv();
+
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("1. Osa Andmetüübid");
             string tekst = "wew";
