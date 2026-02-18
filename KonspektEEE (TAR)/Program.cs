@@ -10,11 +10,16 @@ namespace Naidis_IKTpv25
     {              
         public static void Main(string[] args)
         {
-            Masiv123.Masivvv();
+            ClassOsa3.konspekt();
 
-            
+            ClassOsa1.osa1();
 
-            
+            ClassOsa3.Teoria();
+
+
+
+
+
 
 
         }
