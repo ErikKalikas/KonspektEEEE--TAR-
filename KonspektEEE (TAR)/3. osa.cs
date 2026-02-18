@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KonspektEEE__TAR_
 {
-    internal class Masiv123
+    internal class ClassOsa3
     {
         public static void Masivvv()
         {
@@ -50,11 +50,21 @@ namespace KonspektEEE__TAR_
                 
             }
 
-            int[] uusMasiv = Naidis_fnktsion.masiv1();
+            int[] uusMasiv = ClassOsa3.masiv1();
 
 
         }
-
+        public static int[] masiv1(int[] masiv)
+        {
+            Console.WriteLine("сколько ячеек в масиве");
+            masiv = new int[Convert.ToInt32(Console.ReadLine())];
+            for (int i = 0; i < masiv.Length; i++)
+            {
+                Console.WriteLine($"записать в масив в ячейку {i} из {masiv.Length}");
+                masiv[i] = int.Parse(Console.ReadLine());
+            }
+            return masiv;
+        }
 
     }
 }
