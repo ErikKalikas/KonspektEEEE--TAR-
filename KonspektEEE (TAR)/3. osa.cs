@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static KonspektEEE__TAR_.ClassOsa3;
 
 namespace KonspektEEE__TAR_
 {
     internal class ClassOsa3
     {
-        public static void konspekt()
+        public static void konspekt() //konspekt
         {
             Console.OutputEncoding = Encoding.UTF8;
             for (int i = 0; i < 10; i++)
@@ -142,19 +144,296 @@ namespace KonspektEEE__TAR_
         //------------------------------------------------------------------------
 
         //Ülesanded
-
-        public static (int, int) GenereeriRuudud(int min, int max)
+        internal class ArvuTöötlus
         {
-            min = 0;
-            max = 0;
+            public static int[] GenereeriRuudud() //1. Juhuslike arvude ruudud
+            {
+                Random rnd = new Random();
+                int arv1 = rnd.Next(1, 15);
+                int arv2 = rnd.Next(1, 15);
+                int[] masivv = new int[15];
+                int min = 0;
+                int max = 0;
 
-            Random rnd = new Random();
-            int number = rnd.Next(min, max); 
+                Console.WriteLine($"{arv1}  {arv2}");
+                Console.WriteLine("");
 
 
-            return (min, max);
+                if (arv1 < arv2)
+                {
+                    min += arv1;
+                    max += arv2;
+                }
+                else if (arv1 > arv2)
+                {
+                    min += arv2;
+                    max += arv1;
+                }
+                else
+                {
+                    masivv[arv1] = arv2;
+                    Console.WriteLine(masivv[arv2]);
+                    return masivv;
+                }
+
+
+                for (int i = min; i <= max; i++)
+                {
+                    masivv[i] = i;
+                    Console.WriteLine(masivv[i]);
+                }
+                Console.WriteLine("------------------------------");
+                for (int i = min; i <= max; i++)
+                {
+                    masivv[i] = i * i;
+                    Console.WriteLine($"{i} * {i} = {masivv[i]}");
+                }
+
+                return masivv;
+            }
+            //2. Viie arvu analüüs
+            public static Tuple<double, double, double> AnalüüsiArve()
+            {
+                double[] arvud = Tekstist_arvud();               
+                Console.WriteLine("");
+                Console.WriteLine("Esimene: " + arvud[0]); 
+                Console.WriteLine("Teine: " + arvud[1]);   
+                Console.WriteLine("Kolmas: " + arvud[2]);
+                Console.WriteLine("");
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("");
+
+                
+
+                
+                double summ = arvud[0] + arvud[1] + arvud[2];
+                Console.WriteLine($"{arvud[0]} + {arvud[1]} + {arvud[2]} = {summ}");
+
+                Console.WriteLine("");
+
+                double keskmine = arvud[0] + arvud[1] + arvud[2] / 3;
+                Console.WriteLine($"{arvud[0]} + {arvud[1]} + {arvud[2]} / 3 = {keskmine}");
+
+                Console.WriteLine("");
+
+                double korrutis = arvud[0] * arvud[1] * arvud[2];
+                Console.WriteLine($"{arvud[0]} * {arvud[1]} * {arvud[2]} = {korrutis}");
+
+                Console.WriteLine("");
+
+                Tuple<double, double, double> turple = new Tuple<double, double, double>(summ, keskmine, korrutis);
+
+                Console.WriteLine("");
+
+                Console.WriteLine("------------------------------");
+                Console.WriteLine($"summ = {turple.Item1}");
+
+                Console.WriteLine("");
+
+                Console.WriteLine($"keskmine = {turple.Item2}");
+
+                Console.WriteLine("");
+
+                Console.WriteLine($"korrutis = {turple.Item3}");
+
+
+                return turple;
+            }
+            public static double[] Tekstist_arvud()
+            {
+                double[] doubl = new double[3];
+                Console.WriteLine($"kirjuta oma 1 arv");
+                doubl[0] = double.Parse(Console.ReadLine());
+                Console.WriteLine($"kirjuta oma 2 arv");
+                doubl[1] = double.Parse(Console.ReadLine());
+                Console.WriteLine($"kirjuta oma 3 arv");
+                doubl[2] = double.Parse(Console.ReadLine());
+                Console.WriteLine("");
+                Console.WriteLine("------------------------------");
+
+                return doubl;
+            }          
+
         }
 
+        //3. Nimed ja vanused
+        internal class Inimene
+        {
+            string Nimi; int Vanus;
+
+            public static List<Inimene> inimesedMethod()
+            {
+                List<Inimene> inimesed = new List<Inimene>();
+
+                for (int i = 0; i < 5; i++)
+                {
+                    Console.Write("Sisesta nimi: ");
+                    string nimi = Console.ReadLine();
+
+                    Console.Write("Sisesta vanus: ");
+                    int vanus = int.Parse(Console.ReadLine());
+
+                    Inimene uusIsik = new Inimene();
+                    uusIsik.Nimi = nimi;
+                    uusIsik.Vanus = vanus;
+
+                    inimesed.Add(uusIsik);
+                }          
+                return inimesed;
+            }
+
+            public static Tuple<int, int, int, int> Statistika(List<Inimene> inimesed)
+            {
+                List<Inimene> inimesed2 = inimesedMethod();
+                int minValue = inimesed2.Min(i => i.Vanus);  //минимальное значенмие vanus в листе с объектами 
+                int maxValue = inimesed2.Max(i => i.Vanus);  
+                int KogVanuseSumma = 0;
+                int keskmineanus = 0;
+                for (int i = 0;i <= 5;i++)
+                {
+                    KogVanuseSumma += inimesed2[i].Vanus;                
+                }
+                Console.WriteLine($"kogu vanuse summa on {KogVanuseSumma}");
+                Console.WriteLine("");
+
+                keskmineanus = KogVanuseSumma / 5;
+
+                Console.WriteLine($"keskmine vanus on {keskmineanus}");
+                Console.WriteLine("");
+
+                Console.WriteLine($"kõige noorema inimese vanus on {minValue}");
+                Console.WriteLine("");
+
+                Console.WriteLine($"vanima inimese vanus  on {maxValue}");
+                Tuple<int, int, int, int> InimesteStatistika = new Tuple<int, int, int, int>(KogVanuseSumma, keskmineanus, minValue ,maxValue);
+
+               return InimesteStatistika;
+            }
+
+            
+        }
+
+        //4. "Osta elevant ära!"
+        public static void KuniMärksõnani()
+        {
+            List<string> list = new List<string>();
+            while (true)
+            {
+                    Console.OutputEncoding = Encoding.UTF8;
+                    int i = 0;       
+                    string märksõna;
+                    Console.WriteLine($"Osta elevant ara! ({i++})");
+                    märksõna = Console.ReadLine();                   
+                    list.Add(märksõna);
+                    if (märksõna == "Osta elevant ara")
+                    {
+                        foreach (string n in list)
+                        {
+                            Console.WriteLine("------------------------------");
+                            Console.WriteLine(n);
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                
+            }    
+        }
+
+        //5. Arvamise mäng
+        public static void ArvamiseMäng()
+        {
+            Random rnd = new Random();
+            int arv1 = rnd.Next(1, 100);           
+
+            
+                while (true)
+                {
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        Console.WriteLine("");
+                        Console.WriteLine("kirjuta oma arv");
+                        Console.WriteLine("");
+                        int arv2 = Convert.ToInt32(Console.ReadLine());
+                        if (arv2 > arv1)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("");
+                            Console.WriteLine("liiga suur");
+                            Console.WriteLine("");
+                        }
+                        else if (arv2 < arv1)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("");
+                            Console.WriteLine("liiga väike");
+                            Console.WriteLine("");
+                        }
+                        else if (arv2 == arv1)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("õige");
+                            Console.WriteLine("");
+                            Console.WriteLine(arv1);
+                            return;
+                        }
+                        
+                        if (i  == 5)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("------------------------------");
+                            Console.WriteLine("te kaotasite");
+                        }
+                    }                   
+                    Console.WriteLine("Kas mängid veel kord?");
+                    Console.WriteLine("1. JAH");
+                    Console.WriteLine("2. EI");
+                    Console.WriteLine("------------------------------");
+                    int veel = Convert.ToInt32(Console.ReadLine());
+                    Console.Clear();
+                    if (veel == 1)
+                    {
+                        continue;
+                    }
+                    else 
+                    {
+                        return;
+                    }
+                    
+                }
+            
+            
+
+        }
+
+        //6. Suurim neliarvuline arv
+        public static int[] SuurimNeliarvulineArv()
+        {
+            Console.WriteLine("kirjutage 4 numbrit");
+            int[] numbr = new int[4];
+            for (int i = 0; i < numbr.Length; i++)
+            {
+                Console.WriteLine($"kirjutage number {i+1}");
+                numbr[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            return numbr;
+        }
+
+        public static void SuurimNeliarv(int[] arvud)
+        {
+            for (int i = 0; i < arvud.Length; i++)
+            {
+                if (arvud[i] < 0 || arvud[i] > 9)
+                {
+                    Console.WriteLine("vale numbrid");
+                    return;
+                }                                              
+            }
+            Console.WriteLine($"{arvud[0]}{arvud[1]}{arvud[2]}{arvud[3]}");
+
+        }
     }
 
 }

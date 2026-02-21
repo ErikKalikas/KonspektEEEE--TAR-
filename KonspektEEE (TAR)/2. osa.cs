@@ -6,7 +6,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace KonspektEEE__TAR_
 {
-    internal class Naidis_fnktsion
+    internal class ClassOsa2
     {
         public static float Summa(float arv1, float arv2)
         {

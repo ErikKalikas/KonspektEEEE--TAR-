@@ -1,8 +1,9 @@
-﻿using KonspektEEE__TAR_;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Channels;
+using KonspektEEE__TAR_;
+using static KonspektEEE__TAR_.ClassOsa3;
 
 namespace Naidis_IKTpv25
 {
@@ -10,11 +11,17 @@ namespace Naidis_IKTpv25
     {              
         public static void Main(string[] args)
         {
-            ClassOsa3.konspekt();
+            ClassOsa3.SuurimNeliarv(ClassOsa3.SuurimNeliarvulineArv());
 
-            ClassOsa1.osa1();
+            //ArvuTöötlus.AnalüüsiArve();
 
-            ClassOsa3.Teoria();
+            //ArvuTöötlus.GenereeriRuudud();
+
+            //ClassOsa3.konspekt();
+
+            //ClassOsa1.osa1();
+
+            //ClassOsa3.Teoria();
 
 
 
