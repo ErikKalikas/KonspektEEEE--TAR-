@@ -11,7 +11,22 @@ namespace Naidis_IKTpv25
     {              
         public static void Main(string[] args)
         {
-            ClassOsa3.SuurimNeliarv(ClassOsa3.SuurimNeliarvulineArv());
+            PaariJaPaaritudLoendused();
+
+            //KõigeSuuremaArvuOtsing();
+
+            //KeskmisestSuuremad();
+
+            //PositiivsedJaNegatiivsed();
+
+            //ArvudeRuudud();
+
+            //ÕpilastegaMängimine();
+
+            //var t = ClassOsa3.TabeliSisestaminee();
+            //ClassOsa3.GenereeriKorrutustabel(t.Item1, t.Item2);
+
+            //ClassOsa3.SuurimNeliarv(ClassOsa3.SuurimNeliarvulineArv());
 
             //ArvuTöötlus.AnalüüsiArve();
 

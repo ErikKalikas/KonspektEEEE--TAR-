@@ -4,12 +4,20 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 using static KonspektEEE__TAR_.ClassOsa3;
 
 namespace KonspektEEE__TAR_
 {
     internal class ClassOsa3
     {
+        public static void palka()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("");
+        }
+
         public static void konspekt() //konspekt
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -182,7 +190,7 @@ namespace KonspektEEE__TAR_
                     masivv[i] = i;
                     Console.WriteLine(masivv[i]);
                 }
-                Console.WriteLine("------------------------------");
+                palka();
                 for (int i = min; i <= max; i++)
                 {
                     masivv[i] = i * i;
@@ -199,13 +207,11 @@ namespace KonspektEEE__TAR_
                 Console.WriteLine("Esimene: " + arvud[0]); 
                 Console.WriteLine("Teine: " + arvud[1]);   
                 Console.WriteLine("Kolmas: " + arvud[2]);
-                Console.WriteLine("");
-                Console.WriteLine("------------------------------");
-                Console.WriteLine("");
+                palka();
 
-                
 
-                
+
+
                 double summ = arvud[0] + arvud[1] + arvud[2];
                 Console.WriteLine($"{arvud[0]} + {arvud[1]} + {arvud[2]} = {summ}");
 
@@ -225,7 +231,7 @@ namespace KonspektEEE__TAR_
 
                 Console.WriteLine("");
 
-                Console.WriteLine("------------------------------");
+                palka();
                 Console.WriteLine($"summ = {turple.Item1}");
 
                 Console.WriteLine("");
@@ -249,7 +255,7 @@ namespace KonspektEEE__TAR_
                 Console.WriteLine($"kirjuta oma 3 arv");
                 doubl[2] = double.Parse(Console.ReadLine());
                 Console.WriteLine("");
-                Console.WriteLine("------------------------------");
+                palka();
 
                 return doubl;
             }          
@@ -329,7 +335,7 @@ namespace KonspektEEE__TAR_
                     {
                         foreach (string n in list)
                         {
-                            Console.WriteLine("------------------------------");
+                            palka();
                             Console.WriteLine(n);
                         }
                         return;
@@ -383,14 +389,14 @@ namespace KonspektEEE__TAR_
                         if (i  == 5)
                         {
                             Console.Clear();
-                            Console.WriteLine("------------------------------");
+                            palka();
                             Console.WriteLine("te kaotasite");
                         }
                     }                   
                     Console.WriteLine("Kas mängid veel kord?");
                     Console.WriteLine("1. JAH");
                     Console.WriteLine("2. EI");
-                    Console.WriteLine("------------------------------");
+                    palka();
                     int veel = Convert.ToInt32(Console.ReadLine());
                     Console.Clear();
                     if (veel == 1)
@@ -434,6 +440,259 @@ namespace KonspektEEE__TAR_
             Console.WriteLine($"{arvud[0]}{arvud[1]}{arvud[2]}{arvud[3]}");
 
         }
-    }
+        //7. Korrutustabel
 
+        public static Tuple<int, int> TabeliSisestaminee()
+        {           
+            Console.WriteLine("kirjuta oma ridadeArv");
+            int arv1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Kirjuta oma veergudeArv");
+            int arv2 = Convert.ToInt32(Console.ReadLine());
+
+            Tuple<int, int> Tuple = new Tuple<int, int>(arv1, arv2);
+            return Tuple;
+        }
+
+
+        public static int[,] GenereeriKorrutustabel(int ridadeArv, int veergudeArv) //количествострок и количествостолбцов
+        {
+            Console.Clear();
+
+            if (ridadeArv <= 0 || veergudeArv <= 0) 
+            {
+                Console.WriteLine("Arv peab olema suurem kui 0");
+                return null;  //возвращает ничего
+            }
+
+            int[,] tabel = new int[ridadeArv, veergudeArv];
+
+            for (int r = 0; r < ridadeArv; r++)
+            {
+                for (int v = 0; v < veergudeArv; v++)
+                {
+                    tabel[r, v] = (r + 1) * (v + 1);
+                    Console.Write(tabel[r, v].ToString().PadLeft(5));
+                }
+                Console.WriteLine();
+            }
+
+            return tabel;
+        }
+
+        //8. Õpilastega mängimine
+
+        public static void ÕpilastegaMängimine()
+        {
+            string[] Nimed = { "Jaan", "Mari", "Tõnu", "Kati", "Andres", "Liis", "Marten", "Anu", "Rasmus", "Heli" };
+            int n = 0;
+            Nimed[2] = "Kati";
+            Nimed[5] = "Mati";
+
+            palka();
+            Console.WriteLine(Nimed[2]);
+
+            palka();
+
+            Console.WriteLine(Nimed[5]);
+
+            palka();
+
+            foreach (string nimi1 in Nimed)
+            {
+                if (nimi1.StartsWith("A"))  //StartsWith - проверяет, начинается ли строка с указанного текста или буквы.
+                {
+                    Console.WriteLine($"Tere ! {nimi1}");
+                }
+            }
+
+            palka();
+
+            for (int i = 0; i < Nimed.Length; i++)
+            {
+                Console.WriteLine($"{Nimed[i]}, index {i}");
+            }
+
+            palka();
+
+
+            foreach (string nimi1 in Nimed)
+            {
+                Console.WriteLine(nimi1.ToLower());
+            }
+            palka();
+
+            do
+            {
+                Console.WriteLine($"Tere! {Nimed[n]}");
+                n++;
+            }
+            while (Nimed[n] != "Mati");
+            palka();
+        }
+
+        //Arvude ruudud
+        public static void ArvudeRuudud()
+        {
+            int[] arvud = { 2, 4, 6, 8, 10, 12 };
+            int ab = 0;
+            int count = 0;
+            palka();
+            for (int i = 0;i < arvud.Length;i++)
+            {
+                Console.WriteLine($"numbri ruut {arvud[i]} = {arvud[i] = arvud[i] * arvud[i]} ");             
+            }
+            palka();
+
+            foreach (int arv in arvud)
+            {
+                Console.WriteLine(arv);
+                Console.WriteLine("");
+            }
+                
+
+            while (ab < arvud.Length )
+            {
+                if(arvud[ab] % 3 == 0)
+                {
+                    count++;
+                }
+                ab++;
+            }         
+            palka();
+            Console.WriteLine($"kõik kordnevad arvud on {count}");
+            palka();
+        }
+
+        //10 – Positiivsed ja negatiivsed
+        public static void PositiivsedJaNegatiivsed()
+        {
+            int[] arvud = { 5, -3, 0, 8, -1, 4, -7, 2, 0, -5, 6, 9 };
+            int positiivseid = 0;
+            int negatiivseid = 0;
+
+            foreach (int arv in arvud)
+            {
+                if (arv >= 0)
+                {
+                    positiivseid++;
+                }
+                else
+                {
+                    negatiivseid++;
+                }
+            }
+            palka();
+            Console.WriteLine($"positiivseid arv on {positiivseid}");
+            Console.WriteLine("");
+            Console.WriteLine($"negatiivseid arv on {negatiivseid}");
+            palka();
+
+        }
+
+        //11 – Keskmisest suuremad
+        public static void KeskmisestSuuremad()
+        {
+            Random rnd = new Random();
+            int[] masiv = new int[15];
+            int summ = 0;
+            int ab = 0;
+
+            //random
+            for (int i = 0; i < masiv.Length; i++ )
+            {
+                masiv[i] = rnd.Next(1, 100);
+            }
+            
+            //summ      
+            for (int i = 0; i < masiv.Length; i++)
+            {
+                summ += masiv[i];
+            }
+
+            int kesk = summ / masiv.Length;
+
+            palka();
+            Console.WriteLine($"keskmine väärtus on võrdne {kesk}");
+            palka();
+
+            foreach (int arv in  masiv)
+            {
+                if (arv > kesk)
+                {
+                    Console.WriteLine(arv);
+                    Console.WriteLine("");
+                }
+            }
+            palka();
+
+            ab = 0; // начинаем с 0
+            do
+            {
+                Console.WriteLine(masiv[ab]);
+                Console.WriteLine(""); 
+
+                ab++; 
+            }
+            while (ab < masiv.Length && masiv[ab] > 10); 
+            palka();
+        }
+
+        //12 – Kõige suurema arvu otsing
+        public static void KõigeSuuremaArvuOtsing()
+        {
+            int[] numbrid = { 12, 56, 78, 2, 90, 43, 88, 67 };
+            int suurim = numbrid[0];
+
+            foreach (int arv in numbrid)
+            {
+                if (arv > suurim)
+                    suurim = arv;
+            }
+
+            Console.WriteLine("Suurim arv on: " + suurim);
+
+        }
+
+        //13 – Paari- ja paaritud loendused
+        public static void PaariJaPaaritudLoendused()
+        {
+            Random rnd = new Random();
+            List<int> list = new List<int>();
+            int PaarituArvudeSumma = 0;
+            int kesk = 0;
+            int suur = 0;
+
+            for (int i = 0; i < 20; i++)
+            {
+                list.Add(rnd.Next(1, 100));
+
+                if (list[i] % 2 == 0)
+                {
+                    PaarituArvudeSumma += list[i];
+                    kesk++;
+                }
+            }
+
+            palka();
+            Console.WriteLine($"paaritu arvude summa on {PaarituArvudeSumma}");
+            palka();
+
+            int keskVV = PaarituArvudeSumma / kesk;
+            Console.WriteLine($"Keskmine väärtus on võrdne on {PaarituArvudeSumma} / {kesk} = {keskVV}");
+        
+            for (int i = 0;i < list.Count; i++)
+            {
+                if (list[i] > 50)
+                {
+                    suur++;
+                }
+            }
+
+            palka();
+            Console.WriteLine($"arvude arv on suurem kui 50 võrdub on {suur}");
+            palka();
+        }
+
+
+    }
 }
