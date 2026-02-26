@@ -19,16 +19,16 @@ namespace Naidis_IKTpv25
                 Console.WriteLine("1");
                 Console.WriteLine("2");
                 Console.WriteLine("3");
+                Console.WriteLine("6 - exit");
                 int osa = int.Parse(Console.ReadLine());
                 Console.Clear();
                 if (osa == 1)
                 {
-                    
-
+                    ClassOsa1.osa1();
                 }
                 else if (osa == 2)
                 {
-
+                    ClassOsa2.Ülesandeid();
                 }
                 else if (osa == 3)
                 {
@@ -45,7 +45,8 @@ namespace Naidis_IKTpv25
                             ArvuTöötlus.AnalüüsiArve();
                             break;
                         case 3:
-                                                        
+                            List<Inimene> inimesed = Inimene.inimesedMethod();
+                            Tuple<int, int, int, int> stat = Inimene.Statistika(inimesed);
                             break;
                         case 4:
                             KuniMärksõnani();
@@ -62,28 +63,28 @@ namespace Naidis_IKTpv25
                             ClassOsa3.GenereeriKorrutustabel(suurused.Item1, suurused.Item2);
                             break;
                         case 8:
-
+                            ÕpilastegaMängimine();
                             break;
                         case 9:
-
+                            ArvudeRuudud();
                             break;
                         case 10:
-
+                            PositiivsedJaNegatiivsed();
                             break;
                         case 11:
-
+                            KeskmisestSuuremad();
                             break;
                         case 12:
-
+                            KõigeSuuremaArvuOtsing();
                             break;
                         case 13:
-
+                            PaariJaPaaritudLoendused();
                             break;
                         case 14:
-
+                            konspekt();
                             break;
                         case 15:
-
+                            Teoria();
                             break;
                         default:
                             Console.WriteLine("vale");
@@ -91,6 +92,10 @@ namespace Naidis_IKTpv25
                             break;
 
                     }
+                }
+                else if (osa == 6)
+                {
+                    return;
                 }
                 else
                 {

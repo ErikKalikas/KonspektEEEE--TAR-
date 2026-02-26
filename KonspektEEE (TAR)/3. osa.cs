@@ -265,7 +265,8 @@ namespace KonspektEEE__TAR_
         //3. Nimed ja vanused
         internal class Inimene
         {
-            string Nimi; int Vanus;
+            public string Nimi;
+            public int Vanus;
 
             public static List<Inimene> inimesedMethod()
             {
@@ -284,39 +285,37 @@ namespace KonspektEEE__TAR_
                     uusIsik.Vanus = vanus;
 
                     inimesed.Add(uusIsik);
-                }          
+                }
+
                 return inimesed;
             }
 
             public static Tuple<int, int, int, int> Statistika(List<Inimene> inimesed)
             {
-                List<Inimene> inimesed2 = inimesedMethod();
-                int minValue = inimesed2.Min(i => i.Vanus);  //минимальное значенмие vanus в листе с объектами 
-                int maxValue = inimesed2.Max(i => i.Vanus);  
+                int minValue = inimesed.Min(i => i.Vanus);
+                int maxValue = inimesed.Max(i => i.Vanus);
+
                 int KogVanuseSumma = 0;
-                int keskmineanus = 0;
-                for (int i = 0;i <= 5;i++)
+
+                for (int i = 0; i < inimesed.Count; i++)
                 {
-                    KogVanuseSumma += inimesed2[i].Vanus;                
+                    KogVanuseSumma += inimesed[i].Vanus;
                 }
+
+                int keskmineanus = KogVanuseSumma / inimesed.Count;
+
                 Console.WriteLine($"kogu vanuse summa on {KogVanuseSumma}");
-                Console.WriteLine("");
-
-                keskmineanus = KogVanuseSumma / 5;
-
                 Console.WriteLine($"keskmine vanus on {keskmineanus}");
-                Console.WriteLine("");
-
                 Console.WriteLine($"kõige noorema inimese vanus on {minValue}");
-                Console.WriteLine("");
+                Console.WriteLine($"vanima inimese vanus on {maxValue}");
 
-                Console.WriteLine($"vanima inimese vanus  on {maxValue}");
-                Tuple<int, int, int, int> InimesteStatistika = new Tuple<int, int, int, int>(KogVanuseSumma, keskmineanus, minValue ,maxValue);
-
-               return InimesteStatistika;
+                return new Tuple<int, int, int, int>(
+                    KogVanuseSumma,
+                    keskmineanus,
+                    minValue,
+                    maxValue
+                );
             }
-
-            
         }
 
         //4. "Osta elevant ära!"
@@ -530,7 +529,7 @@ namespace KonspektEEE__TAR_
             palka();
         }
 
-        //Arvude ruudud
+        //9 – Arvude ruudud
         public static void ArvudeRuudud()
         {
             int[] arvud = { 2, 4, 6, 8, 10, 12 };
