@@ -14,12 +14,13 @@ namespace Naidis_IKTpv25
 
             while (true)
             {
-                Console.WriteLine("");
+                Console.WriteLine("------------------------------");
                 Console.WriteLine("valige osa");
                 Console.WriteLine("1");
                 Console.WriteLine("2");
                 Console.WriteLine("3");
                 Console.WriteLine("6 - exit");
+                Console.WriteLine("------------------------------");
                 int osa = int.Parse(Console.ReadLine());
                 Console.Clear();
                 if (osa == 1)
@@ -87,8 +88,8 @@ namespace Naidis_IKTpv25
                             Teoria();
                             break;
                         default:
-                            Console.WriteLine("vale");
-                            Environment.Exit(0);
+                            Console.WriteLine("");
+                            Console.WriteLine("korda valik");
                             break;
 
                     }
