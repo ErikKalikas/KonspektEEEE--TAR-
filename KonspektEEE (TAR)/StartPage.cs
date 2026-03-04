@@ -14,11 +14,14 @@ namespace Naidis_IKTpv25
 
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine("  ░██████    ░██████  \r\n ░██   ░██  ░██   ░██ \r\n░██        ░██        \r\n░██  █████ ░██  █████ \r\n░██     ██ ░██     ██ \r\n ░██  ░███  ░██  ░███ \r\n  ░█████░█   ░█████░█ \r\n ");
                 Console.WriteLine("------------------------------");
                 Console.WriteLine("valige osa");
                 Console.WriteLine("1");
                 Console.WriteLine("2");
                 Console.WriteLine("3");
+                Console.WriteLine("4");
                 Console.WriteLine("6 - exit");
                 Console.WriteLine("------------------------------");
                 int osa = int.Parse(Console.ReadLine());
@@ -86,6 +89,23 @@ namespace Naidis_IKTpv25
                             break;
                         case 15:
                             Teoria();
+                            break;
+                        default:
+                            Console.WriteLine("");
+                            Console.WriteLine("korda valik");
+                            break;
+
+                    }
+                }
+                else if (osa == 4)
+                {
+                    Console.WriteLine("valige sektsioon");
+                    Console.WriteLine("(1) Teoria");                   
+                    int valik = int.Parse(Console.ReadLine());
+                    switch (valik)
+                    {
+                        case 1:
+                            ClassOsa4.StartrProgrammText();
                             break;
                         default:
                             Console.WriteLine("");
