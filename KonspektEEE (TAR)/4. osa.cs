@@ -31,6 +31,10 @@ namespace KonspektEEE__TAR_
                         string fail = Console.ReadLine();
                         Ridade_lugemine_listiks(fail);
                         break;
+                    case 4:
+
+ 
+                        break;
                     case 10:
                         return;                    
                     default:
@@ -79,5 +83,29 @@ namespace KonspektEEE__TAR_
             }
             return kuude_list;
         }
+
+        public static void ListiMuutmineJaKuvamine(List<string> kuude_list)
+        {
+            foreach (string kuu in kuude_list)
+            {
+                Console.WriteLine(kuu);
+            }
+
+            // Eemalda "Juuni"
+            kuude_list.Remove("Juuni");
+
+            // Muuda esimest elementi
+            if (kuude_list.Count > 0)
+                kuude_list[0] = "Veeel kuuu";
+
+            Console.WriteLine("--------------Kustutasime juuni-----------");
+
+            foreach (string kuu in kuude_list)
+            {
+                Console.WriteLine(kuu);
+            }
+        }
+
+
     }
 }
