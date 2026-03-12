@@ -14,98 +14,137 @@ namespace KonspektEEE__TAR_
         {
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("valige sektsioon");
-                Console.WriteLine("(1) Faili kirjutamine ,(2) Ridade lugemine (10) lõpp");
-                int txt = int.Parse(Console.ReadLine());
-                switch (txt)
+                try
                 {
-                    case 1:
-                        SaveText();
-                        break;
-                    case 2:
- 
-                        break;
-                    case 3:
-                        Console.WriteLine("faili nimi");
-                        string fail = Console.ReadLine();
-                        Ridade_lugemine_listiks(fail);
-                        break;
-                    case 4:
-
- 
-                        break;
-                    case 10:
-                        return;                    
-                    default:
-                        Console.WriteLine("");
-                        Console.WriteLine("korda valik");
-                        break;
+                    Console.Clear();
+                    Console.WriteLine("------------------------------");
+                    Console.WriteLine("valige ülesanne");
+                    Console.WriteLine("1");
+                    Console.WriteLine("2");
+                    Console.WriteLine("3");
+                    Console.WriteLine("4");
+                    Console.WriteLine("5");
+                    Console.WriteLine("6");
+                    Console.WriteLine("7");
+                    Console.WriteLine("8");
+                    Console.WriteLine("9");
+                    Console.WriteLine("10 - lõpp");
+                    Console.WriteLine("------------------------------");
+                    Console.WriteLine("");
+                    int txt = int.Parse(Console.ReadLine());
+                    Console.Clear();
+                    switch (txt)
+                    {
+                        case 1:
+                            Ülesanne1();
+                            break;
+                        case 2:
+                            Ülesanne2();
+                            break;
+                        case 3:
+                            Ülesanne3();
+                            break;
+                        case 4:
+                            Ülesanne4(Ülesanne3());
+                            break;
+                        case 10:
+                            return;
+                        default:
+                            Console.WriteLine("");
+                            Console.WriteLine("korda valik");
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    continue;
                 }
             }
         }
-        public static void SaveText()
+       
+        public static void Ülesanne1()
         {
-            //🧾 Faili kirjutamine (StreamWriter)
             try
             {
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Kuud.txt"); //@"..\..\..\Kuud.txt"
-                StreamWriter text = new StreamWriter(path, true); // true = lisa lõppu
-                Console.WriteLine("Sisesta mingi tekst: ");
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Retseptid.txt"); //@"..\..\..\Kuud.txt"
+                StreamWriter file = new StreamWriter(path, true); // true = lisa lõppu
+                Console.WriteLine("what you favourite italian dish");
                 string lause = Console.ReadLine();
-                text.WriteLine(lause);
-                text.Close();
-
+                file.WriteLine(lause);
+                file.Close();
             }
             catch (Exception)
             {
                 Console.WriteLine("Mingi viga failiga");
             }
         }
-        public static  List<string> Ridade_lugemine_listiks(string fail)
+
+        public static void Ülesanne2()
         {
-            List<string> kuude_list = new List<string>();
             try
             {
-                string path = @$"..\..\..\{fail}";
-                foreach (string rida in File.ReadAllLines(path))
-                {
-                    kuude_list.Add(rida);
-                }
-                foreach(string i in kuude_list)
-                {
-                    Console.WriteLine(i);
-                }
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Retseptid.txt");
+                StreamReader file = new StreamReader(path);
+                string laused = file.ReadToEnd();
+                file.Close();
+                Console.WriteLine(laused);
             }
             catch (Exception)
             {
-                Console.WriteLine("Viga failiga!");
+                Console.WriteLine("Mingi viga failiga, ei saa faili lugeda");
             }
-            return kuude_list;
+
         }
 
-        public static void ListiMuutmineJaKuvamine(List<string> kuude_list)
+        public static List<string> Ülesanne3()
         {
-            foreach (string kuu in kuude_list)
+            List<string> ingridientList = new List<string>();
+            try
             {
-                Console.WriteLine(kuu);
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Koostisosad.txt");
+                foreach (string rida in File.ReadAllLines(path))
+                {
+                    //if (rida != "ketchup")
+                    //{
+                        ingridientList.Add(rida);
+                   // }                  
+                }
+                //if (ingridientList.Contains("ketchup"))
+                //{
+                    ingridientList.Remove("ketchup");
+                //}
+
+                StreamWriter ffile = new StreamWriter(path, true);
+
+                ingridientList[0] = "Kvaliteetne oliiviõli";
+                Console.WriteLine($"1. {ingridientList[0]}");
+
+                foreach (string retsept in ingridientList)
+                {
+                    ffile.WriteLine(retsept);
+                    Console.WriteLine(retsept);
+                }
+                ffile.Close();
             }
-
-            // Eemalda "Juuni"
-            kuude_list.Remove("Juuni");
-
-            // Muuda esimest elementi
-            if (kuude_list.Count > 0)
-                kuude_list[0] = "Veeel kuuu";
-
-            Console.WriteLine("--------------Kustutasime juuni-----------");
-
-            foreach (string kuu in kuude_list)
+            catch (Exception)
             {
-                Console.WriteLine(kuu);
+                Console.WriteLine("Viga!");
             }
+            
+            return ingridientList;
         }
 
-
+        public static void Ülesanne4(List<string> ingridientList)
+        {
+            try
+            {
+                Console.WriteLine("kirjuta oma product");
+                string otsitav = Console.ReadLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("viga");
+            }
+        }
     }
 }

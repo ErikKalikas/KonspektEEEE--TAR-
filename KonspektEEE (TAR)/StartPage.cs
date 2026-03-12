@@ -99,22 +99,7 @@ namespace Naidis_IKTpv25
                 }
                 else if (osa == 4)
                 {
-                    Console.WriteLine("valige sektsioon");
-                    Console.WriteLine("(1) Teoria, (2) Praktilised ülesanded: Failitöötlus ja Listid");                   
-                    int valik = int.Parse(Console.ReadLine());
-                    switch (valik)
-                    {
-                        case 1:
-                            ClassOsa4.StartrProgrammText();
-                            break;
-                        case 2:
-
-                        default:
-                            Console.WriteLine("");
-                            Console.WriteLine("korda valik");
-                            break;
-
-                    }
+                    ClassOsa4.StartrProgrammText();                
                 }
                 else if (osa == 6)
                 {
