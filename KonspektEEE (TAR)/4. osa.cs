@@ -16,7 +16,6 @@ namespace KonspektEEE__TAR_
             {
                 try
                 {
-                    Console.Clear();
                     Console.WriteLine("------------------------------");
                     Console.WriteLine("valige ülesanne");
                     Console.WriteLine("1");
@@ -47,6 +46,9 @@ namespace KonspektEEE__TAR_
                         case 4:
                             Ülesanne4(Ülesanne3());
                             break;
+                        case 5:
+                            Ülesanne5(Ülesanne3());
+                            break;
                         case 10:
                             return;
                         default:
@@ -61,8 +63,9 @@ namespace KonspektEEE__TAR_
                 }
             }
         }
-       
-        public static void Ülesanne1()
+        
+
+        public static void Ülesanne1() //1
         {
             try
             {
@@ -79,7 +82,7 @@ namespace KonspektEEE__TAR_
             }
         }
 
-        public static void Ülesanne2()
+        public static void Ülesanne2() //2
         {
             try
             {
@@ -96,7 +99,7 @@ namespace KonspektEEE__TAR_
 
         }
 
-        public static List<string> Ülesanne3()
+        public static List<string> Ülesanne3() //3
         {
             List<string> ingridientList = new List<string>();
             try
@@ -134,17 +137,37 @@ namespace KonspektEEE__TAR_
             return ingridientList;
         }
 
-        public static void Ülesanne4(List<string> ingridientList)
+        public static void Ülesanne4(List<string> ingridientList) //4
         {
             try
             {
                 Console.WriteLine("kirjuta oma product");
                 string otsitav = Console.ReadLine();
+
+                if (ingridientList.Contains(otsitav))
+                {
+                    Console.WriteLine("Koostisosa on olemas!");
+                }
+                else
+                {
+                    Console.WriteLine("Seda koostisosa meil retseptis ei ole.");
+                }
             }
             catch (Exception)
             {
                 Console.WriteLine("viga");
             }
         }
+
+        public static void Ülesanne5(List<string> ingridientList) //5
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Koostisosad.txt");
+            File.WriteAllLines(path, ingridientList);
+            Console.WriteLine("Uus retsept on edukalt faili salvestatud!");
+
+        }
+        //Ülesanne 6*: Itaalia restorani menüü (Failist Tuple'isse)
+
     }
 }
+ы
