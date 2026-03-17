@@ -263,14 +263,14 @@ namespace KonspektEEE__TAR_
         }
 
         //3. Nimed ja vanused
-        internal class Inimene
+        internal class Inimene123
         {
             public string Nimi;
             public int Vanus;
 
-            public static List<Inimene> inimesedMethod()
+            public static List<Inimene123> inimesedMethod()
             {
-                List<Inimene> inimesed = new List<Inimene>();
+                List<Inimene123> inimesed = new List<Inimene123>();
 
                 for (int i = 0; i < 5; i++)
                 {
@@ -280,7 +280,7 @@ namespace KonspektEEE__TAR_
                     Console.Write("Sisesta vanus: ");
                     int vanus = int.Parse(Console.ReadLine());
 
-                    Inimene uusIsik = new Inimene();
+                    Inimene123 uusIsik = new Inimene123();
                     uusIsik.Nimi = nimi;
                     uusIsik.Vanus = vanus;
 
@@ -290,7 +290,7 @@ namespace KonspektEEE__TAR_
                 return inimesed;
             }
 
-            public static Tuple<int, int, int, int> Statistika(List<Inimene> inimesed)
+            public static Tuple<int, int, int, int> Statistika(List<Inimene123> inimesed)
             {
                 int minValue = inimesed.Min(i => i.Vanus);
                 int maxValue = inimesed.Max(i => i.Vanus);

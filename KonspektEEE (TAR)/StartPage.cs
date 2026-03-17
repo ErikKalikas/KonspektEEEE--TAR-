@@ -49,8 +49,8 @@ namespace Naidis_IKTpv25
                             ArvuTöötlus.AnalüüsiArve();
                             break;
                         case 3:
-                            List<Inimene> inimesed = Inimene.inimesedMethod();
-                            Tuple<int, int, int, int> stat = Inimene.Statistika(inimesed);
+                            List<Inimene123> inimesed = Inimene123.inimesedMethod();
+                            Tuple<int, int, int, int> stat = Inimene123.Statistika(inimesed);
                             break;
                         case 4:
                             KuniMärksõnani();
