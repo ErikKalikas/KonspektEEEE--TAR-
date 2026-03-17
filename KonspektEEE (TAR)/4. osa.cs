@@ -24,10 +24,7 @@ namespace KonspektEEE__TAR_
                     Console.WriteLine("4");
                     Console.WriteLine("5");
                     Console.WriteLine("6");
-                    Console.WriteLine("7");
-                    Console.WriteLine("8");
-                    Console.WriteLine("9");
-                    Console.WriteLine("10 - lõpp");
+                    Console.WriteLine("7- lõpp");
                     Console.WriteLine("------------------------------");
                     Console.WriteLine("");
                     int txt = int.Parse(Console.ReadLine());
@@ -49,7 +46,10 @@ namespace KonspektEEE__TAR_
                         case 5:
                             Ülesanne5(Ülesanne3());
                             break;
-                        case 10:
+                        case 6:
+                            Ülesanne6();
+                            break;
+                        case 7:
                             return;
                         default:
                             Console.WriteLine("");
@@ -167,7 +167,49 @@ namespace KonspektEEE__TAR_
 
         }
         //Ülesanne 6*: Itaalia restorani menüü (Failist Tuple'isse)
+        public static void Ülesanne6() //6
+        {
+            while (true)
+            {
+                Console.WriteLine("\n--- MENÜÜ ---");
+                Console.WriteLine("1 - Lae andmed failist");
+                Console.WriteLine("2 - Näita menüüd");
+                Console.WriteLine("3 - Lisa uus toit");
+                Console.WriteLine("4 - Otsi toitu");
+                Console.WriteLine("5 - Kustuta toit");
+                Console.WriteLine("6 - Salvesta faili");
+                Console.WriteLine("7 - Välju");
 
+                Console.Write("Valik: ");
+                int valik = int.Parse(Console.ReadLine());
+
+                switch (valik)
+                {
+                    case 1:
+                        osa4Ül6.LaeAndmedFailist();
+                        break;
+                    case 2:
+                        osa4Ül6.ItaaliaRestoran();
+                        break;
+                    case 3:
+                        osa4Ül6.LisaUusToit();
+                        break;
+                    case 4:
+                        osa4Ül6.OtsiToitu();
+                        break;
+                    case 5:
+                        osa4Ül6.KustutaToit();
+                        break;
+                    case 6:
+                        osa4Ül6.SalvestaFaili();
+                        break;
+                    case 7:
+                        return;
+                    default:
+                        Console.WriteLine("Vale valik!");
+                        break;
+                }
+            }
+        }
     }
 }
-ы
