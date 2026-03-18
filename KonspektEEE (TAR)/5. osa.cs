@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace KonspektEEE__TAR_
 {
@@ -29,25 +32,94 @@ namespace KonspektEEE__TAR_
 
     internal class ClassOsa5
     {
+        public static void startOsa5()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("------------------------------");
+                    Console.WriteLine("valige ülesanne");
+                    Console.WriteLine("1");
+                    Console.WriteLine("2");
+                    Console.WriteLine("3");
+                    Console.WriteLine("4");
+                    Console.WriteLine("5");
+                    Console.WriteLine("6");
+                    Console.WriteLine("7 - teoria");
+                    Console.WriteLine("8 - lõpp");
+                    Console.WriteLine("------------------------------");
+                    Console.WriteLine("");
+                    int txt = int.Parse(Console.ReadLine());
+                    Console.Clear();
+                    switch (txt)
+                    {
+                        case 1:
+                            Ülesanne1();
+                            break;
+                        case 2:
+
+                            break;
+                        case 3:
+
+                            break;
+                        case 4:
+
+                            break;
+                        case 5:
+
+                            break;
+                        case 6:
+
+                            break;
+                        case 7:
+
+                            break;
+                        case 8:
+                            return;
+                        default:
+                            Console.WriteLine("");
+                            Console.WriteLine("korda valik");
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+        }
         public static void teoria()
         {
             //1. ArrayList (System.Collections)
 
-            /* 
-            ArrayList — это простой способ сбора данных, размер которого не нужно задавать заранее. Он автоматически адаптируется к количеству добавляемых элементов. 
-             
-            Add() – добавляет элемент в конец списка
 
-            Contains() – проверяет наличие элемента
+            //ArrayList — это простой способ сбора данных, размер которого не нужно задавать заранее. Он автоматически адаптируется к количеству добавляемых элементов. 
+            ArrayList test = new ArrayList();
 
-            Count – возвращает количество элементов
+            //Add() – добавляет элемент в конец списка
+            test.Add("test1");
+            test.Add("test2");
+            test.Add("test3");
 
-            Insert(index, item) – добавляет элемент в указанное место
+            //Contains() – проверяет наличие элемента
+            if (test.Contains("test2"))
+            {
+                Console.WriteLine("test2 olemas");
+            }
 
-            IndexOf() – ищет индекс элемента
+            //Count – возвращает количество элементов
+            Console.WriteLine(test.Count);
 
-            Sort() – сортирует элементы по возрастанию
-             */
+            //Insert(index, item) – добавляет элемент в указанное место
+            test.Insert(3, "test4");
+
+            //IndexOf() – ищет индекс элемента
+            test.IndexOf(0);
+
+            //Sort() – сортирует элементы по возрастанию
+            Console.WriteLine();
+
 
 
             //Näide:
@@ -88,30 +160,51 @@ namespace KonspektEEE__TAR_
             //3. List (System.Collections.Generic)
             //Набор типов с сильной типизацией. Наиболее часто используемый тип данных в повседневной разработке.
 
-            /*
-             Add(item) — добавляет один элемент item в конец списка.
 
-             AddRange(collection) — добавляет несколько элементов из коллекции collection в конец списка.
+            //Add(item) — добавляет один элемент item в конец списка.
+            test.Add("test5");
 
-             IndexOf(item) — возвращает индекс первого найденного элемента item в списке (или -1, если элемент не найден).
+            //AddRange(collection) — добавляет несколько элементов из коллекции collection в конец списка.
+            Collection<string> TestCollection = new Collection<string> {"test6", "test7" };
+            test.AddRange(TestCollection);
 
-             Remove(item) — удаляет первый найденный элемент item из списка.
+            //IndexOf(item) — возвращает индекс первого найденного элемента item в списке (или -1, если элемент не найден).
 
-             RemoveAt(index) — удаляет элемент по указанному индексу index.
+            //Remove(item) — удаляет первый найденный элемент item из списка.                        
+            List<Person> people = new List<Person>();                                                                           
+            people.Add(new Person() { Name = "Kadi" });
+            people.Add(new Person() { Name = "Mirje" });
 
-             Insert(index, item) — добавляет элемент item на указанную позицию index в списке.
+            Person lisa = new Person() { Name = "Lisa" };
+            people.Remove(lisa);
 
-             Sort() — сортирует элементы списка по возрастанию.
+            //RemoveAt(index) — удаляет элемент по указанному индексу index.
+            List<string> test2 = new List<string>();
+            test2.Add("Kadi");
+            test2.Add("Mati");
+            test2.RemoveAt(1);
+            //Insert(index, item) — добавляет элемент item на указанную позицию index в списке.
+            test.Insert(1, "johan");
 
-             BinarySearch(item) — выполняет быстрый поиск элемента item в отсортированном списке и возвращает его индекс (если не найден — возвращает отрицательное число).
-             */
+            //Sort() — сортирует элементы списка по возрастанию.
+            List<string> names = new List<string>();
+            names.Add("Kadi");
+            names.Add("Mati");
+            names.Add("johan");
+
+            names.Sort();
+
+            //BinarySearch(item) — выполняет быстрый поиск элемента item в отсортированном списке и возвращает его индекс (если не найден — возвращает отрицательное число).
+            int index = names.BinarySearch("Mati");
+
+            Console.WriteLine(index);
 
             //Näide:
 
 
-            List<Person> people = new List<Person>();
-              people.Add(new Person() { Name = "Kadi" });
-              people.Add(new Person() { Name = "Mirje" });
+            List<Person> people2 = new List<Person>();
+              people2.Add(new Person() { Name = "Kadi" });
+              people2.Add(new Person() { Name = "Mirje" });
 
               foreach (Person p in people)
               Console.WriteLine(p.Name);
@@ -120,24 +213,39 @@ namespace KonspektEEE__TAR_
 
             //4. LinkedList (System.Collections.Generic)
             //Структура данных, организованная в виде списка. Хорошо подходит, если часто требуется добавлять или удалять элементы в начале или в середине списка.
+            LinkedList<string> test3 = new LinkedList<string>();
 
-            /*
-              AddFirst(value) — добавляет элемент value в начало LinkedList.
+            //AddFirst(value) — добавляет элемент value в начало LinkedList.
+            test3.AddFirst("100");
 
-              AddLast(value) — добавляет элемент value в конец LinkedList.
+            //AddLast(value) — добавляет элемент value в конец LinkedList.
+            test3.AddLast("102");
 
-              AddBefore(node, value) — добавляет элемент value перед указанным узлом node в LinkedList.
+            //AddBefore(node, value) — добавляет элемент value перед указанным узлом node в LinkedList.
+            LinkedListNode<string> node = test3.Find("102");
+            test3.AddBefore(node, "101"); // список: 100, 101, 102
 
-              AddAfter(node, value) — добавляет элемент value после указанного узла node в LinkedList.
+            //AddAfter(node, value) — добавляет элемент value после указанного узла node в LinkedList.
+            test3.AddAfter(node, "103");  // список: 100, 101, 102, 103
 
-              RemoveFirst() — удаляет первый элемент из LinkedList.
+            //RemoveFirst() — удаляет первый элемент из LinkedList.
+            test3.RemoveFirst(); // список: 101, 102, 103
 
-              RemoveLast() — удаляет последний элемент из LinkedList.
+            //RemoveLast() — удаляет последний элемент из LinkedList.
+            test3.RemoveLast();  // список: 101, 102
 
-              Remove(value) — удаляет первый найденный элемент со значением value из LinkedList.
+            //Remove(value) — удаляет первый найденный элемент со значением value из LinkedList.
+            test3.Remove("101"); // список: 102
 
-             */
-                 LinkedList<int> loetelu = new LinkedList<int>();
+            //вывод
+            foreach (var item in test3)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            //Näide:
+            LinkedList<int> loetelu = new LinkedList<int>();
                  loetelu.AddLast(5);
                  loetelu.AddLast(3);
                  loetelu.AddFirst(0);
@@ -156,21 +264,36 @@ namespace KonspektEEE__TAR_
 
             //5. Dictionary<TKey, TValue> – Sõnastik
             //Словарь (dictionary) позволяет хранить пары «ключ-значение». Быстрый поиск и удобная структура, когда нужно описать взаимосвязи (например, ID и имя, страна и столица).
+            Dictionary<int, string> test4 = new Dictionary<int, string>();
 
-            /*
-             Add(key, value) — добавляет пару ключ-значение (key — ключ, value — значение) в Dictionary.
+            //Add(key, value) — добавляет пару ключ-значение (key — ключ, value — значение) в Dictionary.
+            test4.Add(1, "pepsi");
+            test4.Add(2, "kola");
+            test4.Add(3, "lipton");
 
-             Remove(key) — удаляет элемент из Dictionary по указанному ключу key.
+            //Remove(key) — удаляет элемент из Dictionary по указанному ключу key.
+            test4.Remove(2);
 
-             ContainsKey(key) — проверяет, существует ли указанный ключ key в Dictionary (возвращает true или false).
+            //ContainsKey(key) — проверяет, существует ли указанный ключ key в Dictionary (возвращает true или false).
+            Console.WriteLine(test4.ContainsKey(2));
 
-             ContainsValue(value) — проверяет, есть ли в Dictionary указанное значение value.
+            //ContainsValue(value) — проверяет, есть ли в Dictionary указанное значение value.
+            Console.WriteLine(test4.ContainsValue("lipton"));
 
-             Keys — возвращает коллекцию всех ключей в Dictionary.
+            //Keys — возвращает коллекцию всех ключей в Dictionary.
+            foreach (var key in test4.Keys)
+            {
+                Console.WriteLine(key);
+            }
 
-             Values — возвращает коллекцию всех значений в Dictionary.
-             */
+            //Values — возвращает коллекцию всех значений в Dictionary.
+            foreach (var value in test4.Values)
+            {
+                Console.WriteLine(value);
+            }
 
+
+            //Näide:
             Dictionary<int, string> riigid = new Dictionary<int, string>();
             riigid.Add(1, "Hiina");
             riigid.Add(2, "Eesti");
@@ -206,10 +329,40 @@ namespace KonspektEEE__TAR_
         {
             List<Inimene> inimene1 = new List<Inimene>();
             List<Toode> Toode1 = new List<Toode>();
+            string jahei = "";
+            bool mees;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Kas te olete mees? (jah/ei)");
+                    jahei = Console.ReadLine();
+                    Console.Clear();                    
+                    if (jahei == "jah")
+                    {
+                        mees = true;
+                        break;
+                    }
+                    else if (jahei == "ei")
+                    {
+                        mees = false;
+                        break;
+                    }
+                }
+                catch (Exception)
+                {                   
+                    continue;
+                }
+            }
+            
+                
+            
+
 
             Console.WriteLine("kirjutage toote nimi");
             string toote = Console.ReadLine();
             Toode1.Add(new Toode() { Nimi = toote });
+
 
 
             Console.WriteLine("kuidas sinu nimi?");
@@ -228,8 +381,10 @@ namespace KonspektEEE__TAR_
             char Pikkus = char.Parse(Console.ReadLine());
             inimene1.Add(new Inimene() { Pikkus = Pikkus });
 
-            Console.WriteLine("Milline on sinu aktiivsusaste? (0%>, <100%) ");
+            Console.WriteLine("Milline on sinu aktiivsusaste? ");
+
             
+
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Naidis_IKTpv25
                 Console.WriteLine("2");
                 Console.WriteLine("3");
                 Console.WriteLine("4");
+                Console.WriteLine("5");
                 Console.WriteLine("6 - exit");
                 Console.WriteLine("------------------------------");
                 int osa = int.Parse(Console.ReadLine());
@@ -101,6 +102,10 @@ namespace Naidis_IKTpv25
                 {
                     ClassOsa4.StartrProgrammText();                
                 }
+                else if (osa == 5)
+                {
+                    ClassOsa5.startOsa5();
+                }
                 else if (osa == 6)
                 {
                     return;
@@ -115,7 +120,7 @@ namespace Naidis_IKTpv25
 
 
 
-            PaariJaPaaritudLoendused();
+            //PaariJaPaaritudLoendused();
 
             //KõigeSuuremaArvuOtsing();
 
