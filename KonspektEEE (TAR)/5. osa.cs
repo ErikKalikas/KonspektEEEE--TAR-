@@ -18,16 +18,26 @@ namespace KonspektEEE__TAR_
     class Toode //Ülesanne 1
     {
         public string Nimi { get; set; }
+        public int kal100 { get; set; }
     }
     class Inimene //Ülesanne 1
     {
         public string Nimi { get; set; }
         public int Vanus { get; set; }
         public string Sugu { get; set; }
-        public char Pikkus { get; set; }
-        public string Kaal { get; set; }
-        public string Aktiivsustase { get; set; }
-        
+        public double Pikkus { get; set; }
+        public double Kaal { get; set; }
+        public string Aktiivsustase { get; set; } 
+
+        public Inimene(string Nimi, int Vanus, string Sugu, double Pikkus, double kaal, string Aktiivsustase)
+        {
+            this.Nimi = Nimi;
+            this.Vanus = Vanus;
+            this.Sugu = Sugu;
+            this.Pikkus = Pikkus;
+            this.Kaal = kaal;
+            this.Aktiivsustase = Aktiivsustase;
+        }
     }
 
     internal class ClassOsa5
@@ -327,6 +337,11 @@ namespace KonspektEEE__TAR_
 
         public static void Ülesanne1() //1
         {
+            Inimene H1 = new Inimene();
+
+
+
+
             List<Inimene> inimene1 = new List<Inimene>();
             List<Toode> Toode1 = new List<Toode>();
             string jahei = "";
@@ -361,29 +376,52 @@ namespace KonspektEEE__TAR_
 
             Console.WriteLine("kirjutage toote nimi");
             string toote = Console.ReadLine();
-            Toode1.Add(new Toode() { Nimi = toote });
+
 
 
 
             Console.WriteLine("kuidas sinu nimi?");
             string nimi = Console.ReadLine();
-            inimene1.Add(new Inimene() { Nimi = nimi });
+
 
             Console.WriteLine("Kui vana sa oled?");
             int vanus = int.Parse(Console.ReadLine());
-            inimene1.Add(new Inimene() { Vanus = vanus });
+
 
             Console.WriteLine("Milline on su sugu?");
             string sugu = Console.ReadLine();
-            inimene1.Add(new Inimene() { Sugu = sugu });
+
 
             Console.WriteLine("Kui pikk sa oled? (arv.arv)m");
             char Pikkus = char.Parse(Console.ReadLine());
-            inimene1.Add(new Inimene() { Pikkus = Pikkus });
 
-            Console.WriteLine("Milline on sinu aktiivsusaste? ");
 
-            
+            Console.WriteLine("Milline on sinu aktiivsusaste? (1. väike, 2. normaalne, 3. suur)");
+            int aktiivsused = int.Parse(Console.ReadLine());
+            string aktiivsused2 = "";
+            while (true)
+            {
+                try
+                {
+                   if (aktiivsused == 1)
+                   {
+                        aktiivsused2 = "väike";
+                   }
+                   else if (aktiivsused == 2)
+                   {
+                        aktiivsused2 = "normaalne";
+                   }
+                   else if (aktiivsused == 3)
+                   {
+                        aktiivsused2 = "suur";
+                    }
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+
 
         }
     }
