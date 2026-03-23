@@ -24,12 +24,12 @@ namespace KonspektEEE__TAR_
     {
         public string Nimi { get; set; }
         public int Vanus { get; set; }
-        public string Sugu { get; set; }
-        public double Pikkus { get; set; }
-        public double Kaal { get; set; }
-        public string Aktiivsustase { get; set; } 
+        public int Sugu { get; set; }
+        public int Pikkus { get; set; }
+        public int Kaal { get; set; }
+        public int Aktiivsustase { get; set; } 
 
-        public Inimene(string Nimi, int Vanus, string Sugu, double Pikkus, double kaal, string Aktiivsustase)
+        public Inimene(string Nimi, int Vanus, int Sugu, int Pikkus, int kaal, int Aktiivsustase)
         {
             this.Nimi = Nimi;
             this.Vanus = Vanus;
@@ -337,92 +337,132 @@ namespace KonspektEEE__TAR_
 
         public static void Ülesanne1() //1
         {
-            Inimene H1 = new Inimene();
+            //toit
+            List<Toode> tooted = new List<Toode>()
+            {
+                new Toode { Nimi = "Õun",  kal100 = 52 },
+                new Toode { Nimi = "Leib", kal100 = 250 },
+                new Toode { Nimi = "Kana", kal100 = 165 },
+                new Toode { Nimi = "Riis", kal100 = 130 }
+            };
 
-
-
-
-            List<Inimene> inimene1 = new List<Inimene>();
-            List<Toode> Toode1 = new List<Toode>();
-            string jahei = "";
-            bool mees;
+            int valik;
+            int kaal;
+            string toote;
+            string nimi1;
+            int vanus;
+            int sugu;
+            int Pikkus;
+            int aktiivsused;
             while (true)
             {
                 try
                 {
-                    Console.WriteLine("Kas te olete mees? (jah/ei)");
-                    jahei = Console.ReadLine();
-                    Console.Clear();                    
-                    if (jahei == "jah")
+                    visual.palka();
+                    Console.WriteLine("Kas te olete mees? (1 - jah, 2 - ei)");
+                    visual.palka();
+                    sugu = int.Parse(Console.ReadLine());
+                    Console.Clear();
+                    if (sugu == 1)
                     {
-                        mees = true;
-                        break;
+
                     }
-                    else if (jahei == "ei")
+                    else if (sugu == 2)
                     {
-                        mees = false;
-                        break;
+                        
                     }
+                    else
+                    {
+                        continue;
+                    }
+
+
+                    visual.palka();
+                    Console.WriteLine("kuidas sinu nimi?");
+                    visual.palka();
+                    nimi1 = Console.ReadLine();
+                    Console.Clear();
+
+                    visual.palka();
+                    Console.WriteLine("Kui vana sa oled?");
+                    visual.palka();
+                    vanus = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    visual.palka();
+                    Console.WriteLine("Kui pikk sa oled? cm");
+                    visual.palka();
+                    Pikkus = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    visual.palka();
+                    Console.WriteLine("Kui palju sa kaalud? (kg):");
+                    visual.palka();
+                    kaal = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    visual.palka();
+                    Console.WriteLine("Milline on sinu aktiivsusaste? (1. väike, 2. normaalne, 3. suur)");
+                    visual.palka();
+                    aktiivsused = int.Parse(Console.ReadLine());
+                    Console.Clear();
+                    break;
                 }
                 catch (Exception)
-                {                   
+                {
                     continue;
-                }
+                }                
             }
-            
-                
-            
-
-
-            Console.WriteLine("kirjutage toote nimi");
-            string toote = Console.ReadLine();
+            Inimene inimene = new Inimene(nimi1, vanus, sugu, Pikkus, kaal, aktiivsused);
 
 
 
+            //Harris-Benedict valem
 
-            Console.WriteLine("kuidas sinu nimi?");
-            string nimi = Console.ReadLine();
+            double bmr;
 
-
-            Console.WriteLine("Kui vana sa oled?");
-            int vanus = int.Parse(Console.ReadLine());
-
-
-            Console.WriteLine("Milline on su sugu?");
-            string sugu = Console.ReadLine();
-
-
-            Console.WriteLine("Kui pikk sa oled? (arv.arv)m");
-            char Pikkus = char.Parse(Console.ReadLine());
-
-
-            Console.WriteLine("Milline on sinu aktiivsusaste? (1. väike, 2. normaalne, 3. suur)");
-            int aktiivsused = int.Parse(Console.ReadLine());
-            string aktiivsused2 = "";
-            while (true)
+            if (inimene.Sugu == 1)
             {
-                try
-                {
-                   if (aktiivsused == 1)
-                   {
-                        aktiivsused2 = "väike";
-                   }
-                   else if (aktiivsused == 2)
-                   {
-                        aktiivsused2 = "normaalne";
-                   }
-                   else if (aktiivsused == 3)
-                   {
-                        aktiivsused2 = "suur";
-                    }
-                }
-                catch (Exception)
-                {
-                    continue;
-                }
+                bmr = 88.36 + (13.4 * inimene.Kaal) + (4.8 * inimene.Pikkus) - (5.7 * inimene.Vanus);
+            }
+            else
+            {
+                bmr = 447.6 + (9.2 * inimene.Kaal) + (3.1 * inimene.Pikkus) - (4.3 * inimene.Vanus);
             }
 
 
+
+
+            //aktivsus
+
+            double kordaja = 1.2;
+
+            if (inimene.Aktiivsustase == 2) 
+            {
+                kordaja = 1.55; 
+            }
+            else if (inimene.Aktiivsustase == 3)
+            {
+                kordaja = 1.9;
+            }
+
+            double paevasedKalorid = bmr * kordaja;
+            
+            Console.WriteLine($"\nSinu päevane kalorivajadus: {paevasedKalorid} kcal\n");
+            
+
+
+
+            //Toidusoovitused
+            
+            Console.WriteLine("Kui palju võid süüa päevas:");
+            Console.WriteLine("");
+            
+            foreach (var toode in tooted)
+            {
+                double grammid = (paevasedKalorid / toode.kal100) * 100;
+                Console.WriteLine($"{toode.Nimi}: {grammid:F0} g");
+            }
         }
     }
 }
