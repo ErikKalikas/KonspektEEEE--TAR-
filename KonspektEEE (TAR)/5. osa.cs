@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -39,6 +40,12 @@ namespace KonspektEEE__TAR_
             this.Aktiivsustase = Aktiivsustase;
         }
     }
+    
+    class Õpilane
+    {
+        public string Nimi { get; set; }
+        public List<int> Hinded { get; set; }
+    }
 
     internal class ClassOsa5
     {
@@ -48,6 +55,7 @@ namespace KonspektEEE__TAR_
             {
                 try
                 {
+                    Console.Clear();
                     Console.WriteLine("------------------------------");
                     Console.WriteLine("valige ülesanne");
                     Console.WriteLine("1");
@@ -68,7 +76,7 @@ namespace KonspektEEE__TAR_
                             Ülesanne1();
                             break;
                         case 2:
-
+                            Ülesanne2();
                             break;
                         case 3:
 
@@ -83,7 +91,7 @@ namespace KonspektEEE__TAR_
 
                             break;
                         case 7:
-
+                            teoria();
                             break;
                         case 8:
                             return;
@@ -463,6 +471,249 @@ namespace KonspektEEE__TAR_
                 double grammid = (paevasedKalorid / toode.kal100) * 100;
                 Console.WriteLine($"{toode.Nimi}: {grammid:F0} g");
             }
+        }
+
+        public static void Ülesanne2() //2
+        {
+            Dictionary<string, string> goroda = new Dictionary<string, string>();
+            string valik = "";
+            int valik2 = 0;
+            int valik3 = 0;
+            int globalvalik = 0;
+            bool save;
+            string novigorod = "";
+            string noviokrug = "";
+
+            goroda.Add("Harjumaa", "Tallinn");
+            goroda.Add("Tartumaa", "Tartu");
+            goroda.Add("Ida-Virumaa", "Narva");
+            goroda.Add("Pärnumaa", "Pärnu");
+            goroda.Add("Viljandimaa", "Viljandi");
+            goroda.Add("Saaremaa", "Kuressaare");
+            goroda.Add("Lääne-Virumaa", "Rakvere");
+            goroda.Add("Võrumaa", "Võru");
+            goroda.Add("Valgamaa", "Valga");
+           
+            while (true)
+            {
+                visual.palka();
+                Console.WriteLine("1. kontrollimine ja täitmine ");
+                Console.WriteLine("2. mäng");
+                Console.WriteLine("3. näita kõiki linnu ja valdasid");
+                Console.WriteLine("4. lõpp");
+                visual.palka();
+                globalvalik = int.Parse(Console.ReadLine());
+                Console.Clear();
+                if (globalvalik == 1)
+                {
+                    while (true)
+                    {
+                        try
+                        {
+                            visual.palka();
+                            Console.WriteLine("valige maakond");
+                            visual.palka();
+
+
+                            valik = Console.ReadLine();
+                            Console.Clear();
+
+                            save = goroda.ContainsKey(valik);
+                            if (save == true)
+                            {
+                                visual.palka();
+                                Console.WriteLine($"valik, {goroda[valik]}");
+                                visual.palka();
+
+                                Console.Clear();
+                                visual.palka();
+                                Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                                visual.palka();
+                                valik3 = int.Parse(Console.ReadLine());
+
+                                Console.Clear();
+                                if (valik3 == 1)
+                                {
+                                    continue;
+                                }
+                                if (valik3 == 2)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    visual.palka();
+                                    Console.WriteLine("proovige uuesti");
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Sellist ringkonda pole. Kas soovite lisada uue ringkonna ja selle pealinna? (1. JAH/ 2. EI)");
+                                valik2 = int.Parse(Console.ReadLine());
+                                if (valik2 == 1)
+                                {
+                                    Console.WriteLine("sisestage uus piirkond");
+                                    noviokrug = Console.ReadLine();
+
+                                    Console.WriteLine("sisestage uus linn, mis on maakonna keskus");
+                                    novigorod = Console.ReadLine();
+
+                                    goroda.Add(novigorod, novigorod);
+                                    Console.WriteLine("Uus piirkond ja uus linn on lisatud!");
+                                    break;
+                                }
+                                else if (valik2 == 2)
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("proovige uuesti");
+                                    continue;
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("proovige uuesti");
+                            continue;
+                        }
+                    }
+                }
+                else if (globalvalik == 2)
+                {
+                    while (true)
+                    {
+                        int õiged = 0;
+                        List<string> okrug2 = new List<string>();
+                        List<string> gorod2 = new List<string>();
+
+                        foreach (var key in goroda)
+                        {
+                            okrug2.Add(key.Key);
+                            gorod2.Add(key.Value);
+                        }
+
+                        Random rnd = new Random();
+                        string randomGorod = gorod2[rnd.Next(gorod2.Count)];
+                        visual.palka();
+                        Console.WriteLine("kirjuta, millisesse ringkonda see linn kuulub");
+                        visual.palka();
+                        Console.WriteLine(randomGorod);
+
+                        string vastus = Console.ReadLine();
+                        Console.Clear();
+
+                        string õigemaakond = "";
+
+                        foreach (var pair in goroda)
+                        {
+                            if (pair.Value == randomGorod)
+                            {
+                                õigemaakond = pair.Key;
+                                break;
+                            }
+                        }
+
+                        if (vastus.ToLower() == õigemaakond.ToLower())
+                        {
+                            visual.palka();
+                            Console.WriteLine("Õige");
+                            visual.palka();
+                            õiged++;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Vale. Õige vastus: {õigemaakond}");
+                        }
+
+                        Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                        visual.palka();
+                        valik3 = int.Parse(Console.ReadLine());
+                        Console.Clear();
+                        if (valik3 == 1)
+                        {
+                            continue;
+                        }
+                        if (valik3 == 2)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            visual.palka();
+                            Console.WriteLine("proovige uuesti");
+                            continue;
+                        }
+                    }                    
+                }
+                else if (globalvalik == 3)
+                {
+                    foreach (var item in goroda)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("");
+                    Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                    visual.palka();
+                    valik3 = int.Parse(Console.ReadLine());
+
+                    Console.Clear();
+                    if (valik3 == 1)
+                    {
+                        continue;
+                    }
+                    if (valik3 == 2)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        visual.palka();
+                        Console.WriteLine("proovige uuesti");
+                        continue;
+                    }
+                }
+                else if (globalvalik == 4)
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+                
+
+        }
+
+        public static void Ülesanne3() //3
+        {
+            List<Õpilane> õpilane2 = new List<Õpilane>()
+            {
+                new Õpilane { Nimi = "Maksim", Hinded = new List<int> { 3, 3, 3 } },
+                new Õpilane { Nimi = "Nikita", Hinded = new List<int> { 5, 3, 4 } },
+                new Õpilane { Nimi = "Johan", Hinded = new List<int> { 5, 5, 5 } }
+            };
+
+            Dictionary<string, double> keshind = new Dictionary<string, double>();
+            List<double> keskhindL = new List<double>();
+            int a = -1;
+
+            Console.WriteLine("Õpilaste keskmised hinded:");
+            foreach (var o in õpilane2)
+            {
+                double keskmine = o.Hinded.Average();
+                keskhindL[a++] = keskmine;
+                Console.WriteLine($"{o.Nimi}: {keskmine}");
+            }
+            keshind.Add("Maksim", keskhindL[0]);
+            keshind.Add("Nikita", keskhindL[1]);
+            keshind.Add("Johan", keskhindL[2]);
+            
+            
         }
     }
 }
