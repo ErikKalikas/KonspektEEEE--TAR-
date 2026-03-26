@@ -371,18 +371,11 @@ namespace KonspektEEE__TAR_
                     visual.palka();
                     sugu = int.Parse(Console.ReadLine());
                     Console.Clear();
-                    if (sugu == 1)
-                    {
-
-                    }
-                    else if (sugu == 2)
-                    {
-                        
-                    }
-                    else
+                    if (sugu != 1 && sugu != 2)
                     {
                         continue;
                     }
+                    
 
 
                     visual.palka();
@@ -493,7 +486,9 @@ namespace KonspektEEE__TAR_
             goroda.Add("Lääne-Virumaa", "Rakvere");
             goroda.Add("Võrumaa", "Võru");
             goroda.Add("Valgamaa", "Valga");
-           
+
+            //Console.WriteLine(goroda["Harjumaa"]);
+            //goroda.TryGetValue("Harjumaa", out string city);
             while (true)
             {
                 visual.palka();
@@ -586,14 +581,9 @@ namespace KonspektEEE__TAR_
                     while (true)
                     {
                         int õiged = 0;
-                        List<string> okrug2 = new List<string>();
-                        List<string> gorod2 = new List<string>();
-
-                        foreach (var key in goroda)
-                        {
-                            okrug2.Add(key.Key);
-                            gorod2.Add(key.Value);
-                        }
+                        List<string> okrug2 = goroda.Keys.ToList();
+                        List<string> gorod2 = goroda.Values.ToList();
+                        
 
                         Random rnd = new Random();
                         string randomGorod = gorod2[rnd.Next(gorod2.Count)];
@@ -698,20 +688,15 @@ namespace KonspektEEE__TAR_
                 new Õpilane { Nimi = "Johan", Hinded = new List<int> { 5, 5, 5 } }
             };
 
-            Dictionary<string, double> keshind = new Dictionary<string, double>();
-            List<double> keskhindL = new List<double>();
-            int a = -1;
+            Dictionary<string, double> keskhind = new Dictionary<string, double>();
 
             Console.WriteLine("Õpilaste keskmised hinded:");
             foreach (var o in õpilane2)
             {
-                double keskmine = o.Hinded.Average();
-                keskhindL[a++] = keskmine;
-                Console.WriteLine($"{o.Nimi}: {keskmine}");
+                keskhind.Add(o.Nimi, o.Hinded.Average());
+                Console.WriteLine($"{o.Nimi}: {keskhind[o.Nimi]}");
             }
-            keshind.Add("Maksim", keskhindL[0]);
-            keshind.Add("Nikita", keskhindL[1]);
-            keshind.Add("Johan", keskhindL[2]);
+
             
             
         }
