@@ -491,18 +491,26 @@ namespace KonspektEEE__TAR_
             //goroda.TryGetValue("Harjumaa", out string city);
             while (true)
             {
-                visual.palka();
-                Console.WriteLine("1. kontrollimine ja täitmine ");
-                Console.WriteLine("2. mäng");
-                Console.WriteLine("3. näita kõiki linnu ja valdasid");
-                Console.WriteLine("4. lõpp");
-                visual.palka();
-                globalvalik = int.Parse(Console.ReadLine());
-                Console.Clear();
+                try
+                {
+                    visual.palka();
+                    Console.WriteLine("1. kontrollimine ja täitmine ");
+                    Console.WriteLine("2. mäng");
+                    Console.WriteLine("3. näita kõiki linnu ja valdasid");
+                    Console.WriteLine("4. lõpp");
+                    visual.palka();
+                    globalvalik = int.Parse(Console.ReadLine());
+                    Console.Clear();
+                }
+                catch (Exception)
+                {                    
+                    continue;
+                }               
                 if (globalvalik == 1)
                 {
                     while (true)
                     {
+
                         try
                         {
                             visual.palka();
@@ -512,6 +520,11 @@ namespace KonspektEEE__TAR_
 
                             valik = Console.ReadLine();
                             Console.Clear();
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
 
                             save = goroda.ContainsKey(valik);
                             if (save == true)
@@ -521,26 +534,33 @@ namespace KonspektEEE__TAR_
                                 visual.palka();
 
                                 Console.Clear();
-                                visual.palka();
-                                Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
-                                visual.palka();
-                                valik3 = int.Parse(Console.ReadLine());
-
-                                Console.Clear();
-                                if (valik3 == 1)
-                                {
-                                    continue;
-                                }
-                                if (valik3 == 2)
-                                {
-                                    break;
-                                }
-                                else
+                                try
                                 {
                                     visual.palka();
-                                    Console.WriteLine("proovige uuesti");
+                                    Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                                    visual.palka();
+                                    valik3 = int.Parse(Console.ReadLine());
+
+                                    Console.Clear();
+                                }
+                                catch (Exception)
+                                {
                                     continue;
                                 }
+                                    if (valik3 == 1)
+                                    {
+                                        continue;
+                                    }
+                                    if (valik3 == 2)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        visual.palka();
+                                        Console.WriteLine("proovige uuesti");
+                                        continue;
+                                    }
                             }
                             else
                             {
@@ -568,12 +588,7 @@ namespace KonspektEEE__TAR_
                                     continue;
                                 }
                             }
-                        }
-                        catch (Exception)
-                        {
-                            Console.WriteLine("proovige uuesti");
-                            continue;
-                        }
+                       
                     }
                 }
                 else if (globalvalik == 2)
@@ -700,5 +715,6 @@ namespace KonspektEEE__TAR_
             
             
         }
+
     }
 }
