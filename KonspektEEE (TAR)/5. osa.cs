@@ -40,6 +40,15 @@ namespace KonspektEEE__TAR_
             this.Aktiivsustase = Aktiivsustase;
         }
     }
+
+    class Film //Ülesanne 4
+    {
+        public string Pealkiri { get; set; }
+        public int Aasta { get; set; }
+        public string Žanr { get; set; }
+
+
+    }
     
     class Õpilane
     {
@@ -79,10 +88,10 @@ namespace KonspektEEE__TAR_
                             Ülesanne2();
                             break;
                         case 3:
-
+                            Ülesanne3();
                             break;
                         case 4:
-
+                            Ülesanne4();
                             break;
                         case 5:
 
@@ -533,7 +542,7 @@ namespace KonspektEEE__TAR_
                                 Console.WriteLine($"valik, {goroda[valik]}");
                                 visual.palka();
 
-                                Console.Clear();
+                                
                                 try
                                 {
                                     visual.palka();
@@ -696,25 +705,149 @@ namespace KonspektEEE__TAR_
 
         public static void Ülesanne3() //3
         {
-            List<Õpilane> õpilane2 = new List<Õpilane>()
+            while (true)
             {
-                new Õpilane { Nimi = "Maksim", Hinded = new List<int> { 3, 3, 3 } },
-                new Õpilane { Nimi = "Nikita", Hinded = new List<int> { 5, 3, 4 } },
-                new Õpilane { Nimi = "Johan", Hinded = new List<int> { 5, 5, 5 } }
-            };
+                List<Õpilane> õpilane2 = new List<Õpilane>()
+                {
+                    new Õpilane { Nimi = "Maksim", Hinded = new List<int> { 3, 3, 3 } },
+                    new Õpilane { Nimi = "Nikita", Hinded = new List<int> { 5, 3, 4 } },
+                    new Õpilane { Nimi = "Johan", Hinded = new List<int> { 5, 5, 5 } }
+                };
+                int valik1 = 0;
+                double keskh = 0;
+                List<double> keskhind2 = new List<double>();
 
-            Dictionary<string, double> keskhind = new Dictionary<string, double>();
+                visual.palka();
 
-            Console.WriteLine("Õpilaste keskmised hinded:");
-            foreach (var o in õpilane2)
-            {
-                keskhind.Add(o.Nimi, o.Hinded.Average());
-                Console.WriteLine($"{o.Nimi}: {keskhind[o.Nimi]}");
+                Console.WriteLine("õpilaste rind");
+                foreach (var item in õpilane2)
+                {
+                    Console.WriteLine($"{item.Nimi} - {item.Hinded}");
+                }
+
+                visual.palka();
+
+                Console.WriteLine("Õpilaste keskmised hinded:");
+                foreach (var o in õpilane2)
+                {
+                    keskhind2.Add(o.Hinded.Average());
+                    keskh = o.Hinded.Average();
+                    Console.WriteLine($"{o.Nimi}: {keskh}");
+                }
+
+                visual.palka();
+
+                double max = keskhind2.Max();
+                Console.WriteLine("");
+                Console.WriteLine($"kõige suurem keskmine on {max}");
+                visual.palka();
+
+                //kordus
+                try
+                {
+                    visual.palka();
+                    Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                    visual.palka();
+                    valik1 = int.Parse(Console.ReadLine());
+
+                    Console.Clear();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+                if (valik1 == 1)
+                {
+                    continue;
+                }
+                if (valik1 == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    visual.palka();
+                    Console.WriteLine("proovige uuesti");
+                    continue;
+                }
             }
 
-            
-            
         }
 
+        public static void Ülesanne4() //4
+        {          
+            while (true)
+            {
+                List<Film> filmid = new List<Film>
+                {
+                    new Film { Pealkiri = "зеленый слоник", Aasta = 1999, Žanr = "arthouse" },
+                    new Film { Pealkiri = "No Country for Old Men", Aasta = 2007, Žanr = "neo-western" },
+                    new Film { Pealkiri = "груз 200", Aasta = 2007, Žanr = "thriller" },
+                    new Film { Pealkiri = "The Land of Cannibals", Aasta = 1980, Žanr = "science fiction" },
+                    new Film { Pealkiri = "Midsommar", Aasta = 2019, Žanr = "thriller" }
+                };
+                int valik = 0;
+                string zanr = "";
+                bool leitud = false;
+
+                Console.WriteLine("1 - Otsi filme žanri järgi");
+                Console.WriteLine("2 - Leia uusim film");
+                Console.WriteLine("3 - Näita filmid žanrite kaupa");
+                Console.WriteLine("0 - Välju");
+
+                try
+                {
+                    valik = int.Parse(Console.ReadLine());
+                    Console.Clear();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+
+                if (valik == 1)
+                {
+                    try
+                    {
+                        Console.WriteLine("valige filmi žanr");
+                        zanr = Console.ReadLine();
+                        Console.Clear();
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+
+
+                    Console.WriteLine("Leitud filmid:");
+
+                    foreach (var o in filmid)
+                    {
+                        if (o.Žanr.ToLower() == zanr.ToLower())
+                        {                            
+                            Console.WriteLine(o.Žanr);
+                            leitud = true;
+                        }
+                    }
+
+                    if (leitud = false)
+                    {
+                        Console.WriteLine("Selle žanriga filme ei leitud.");
+                    }
+                }
+                else if (valik == 2)
+                {
+                    List<int> uuefilm = new List<int>();
+                    int uuefilm2 = 0;
+                    foreach (var item in filmid)
+                    {
+                        uuefilm.Add(item.Aasta);
+                    }
+                    uuefilm2 = uuefilm.Max();
+                    Console.WriteLine($"kõige uue film on {filmid.}");
+                }
+                
+            }
+        } 
     }
 }
