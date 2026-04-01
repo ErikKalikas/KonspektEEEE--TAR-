@@ -786,18 +786,18 @@ namespace KonspektEEE__TAR_
                     new Film { Pealkiri = "The Land of Cannibals", Aasta = 1980, Žanr = "science fiction" },
                     new Film { Pealkiri = "Midsommar", Aasta = 2019, Žanr = "thriller" }
                 };
-                int valik = 0;
-                string zanr = "";
-                bool leitud = false;
+                int valik = 0;                               
 
+                visual.palka();
                 Console.WriteLine("1 - Otsi filme žanri järgi");
                 Console.WriteLine("2 - Leia uusim film");
                 Console.WriteLine("3 - Näita filmid žanrite kaupa");
-                Console.WriteLine("0 - Välju");
+                Console.WriteLine("4 - Välju");
+                visual.palka();
 
                 try
                 {
-                    valik = int.Parse(Console.ReadLine());
+                    valik = int.Parse(Console.ReadLine()); //выбор
                     Console.Clear();
                 }
                 catch (Exception)
@@ -805,11 +805,15 @@ namespace KonspektEEE__TAR_
                     continue;
                 }
 
-                if (valik == 1)
+                if (valik == 1) //1
                 {
+                    string zanr = "";
+                    bool leitud = false;
                     try
                     {
-                        Console.WriteLine("valige filmi žanr");
+                        visual.palka();
+                        Console.WriteLine("valige filmi žanr");  //спрашивает жанр
+                        visual.palka();
                         zanr = Console.ReadLine();
                         Console.Clear();
                     }
@@ -818,35 +822,218 @@ namespace KonspektEEE__TAR_
                         continue;
                     }
 
-
+                    visual.palka();
                     Console.WriteLine("Leitud filmid:");
 
-                    foreach (var o in filmid)
+                    foreach (var zanr1 in filmid)
                     {
-                        if (o.Žanr.ToLower() == zanr.ToLower())
-                        {                            
-                            Console.WriteLine(o.Žanr);
+                        if (zanr1.Žanr.ToLower() == zanr.ToLower())  //если item равен заданному жанру то
+                        {
+                            Console.WriteLine($"pealkiri {zanr1.Pealkiri}, aasta {zanr1.Aasta}, Žanr {zanr1.Žanr}"); //выводит жанра
                             leitud = true;
                         }
                     }
+                    visual.palka();
 
-                    if (leitud = false)
+                    if (leitud = false)  //если ненашол
                     {
+                        visual.palka();
                         Console.WriteLine("Selle žanriga filme ei leitud.");
+                        visual.palka();
                     }
                 }
                 else if (valik == 2)
                 {
-                    List<int> uuefilm = new List<int>();
-                    int uuefilm2 = 0;
-                    foreach (var item in filmid)
+                    while (true)
                     {
-                        uuefilm.Add(item.Aasta);
+                        List<int> uuefilm = new List<int>(); //лист с годами
+                        int uuefilm2 = 0;
+
+                        foreach (var item in filmid)
+                        {
+                            uuefilm.Add(item.Aasta);  //добовление всех годов 
+                        }
+
+                        uuefilm2 = uuefilm.Max(); //самый большой год
+
+                        visual.palka();
+                        Console.WriteLine($"kõige uue film on");
+                        foreach (var item in filmid)
+                        {
+                            if (uuefilm2 == item.Aasta) //если самый большой гот соответствует item то выводит данные
+                            {
+                                Console.WriteLine($"pealkiri {item.Pealkiri}, aasta {item.Aasta}, Žanr {item.Žanr}");
+                            }
+                        }
+
+
+
+
+
+                        //kordus  //повтор
+                        int valik1 = 0;
+                        try
+                        {
+                            visual.palka();
+                            Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                            visual.palka();
+                            valik1 = int.Parse(Console.ReadLine());
+
+                            Console.Clear();
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                        if (valik1 == 1)
+                        {
+                            continue;
+                        }
+                        if (valik1 == 2)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            visual.palka();
+                            Console.WriteLine("proovige uuesti");
+                            continue;
+                        }
                     }
-                    uuefilm2 = uuefilm.Max();
-                    Console.WriteLine($"kõige uue film on {filmid.}");
+                    
                 }
-                
+                else if (valik == 3)
+                {
+                    while (true)
+                    {
+                        Dictionary<string, List<Film>> tulem = new Dictionary<string, List<Film>>(); 
+                        string zanr = ""; 
+                        bool leitud = false; 
+
+                        try
+                        {
+                            visual.palka(); 
+                            Console.WriteLine("Valige filmi žanr:"); // просим пользователя ввести жанр
+                            visual.palka(); 
+                            zanr = Console.ReadLine(); 
+                            Console.Clear(); 
+                        }
+                        catch (Exception)
+                        {
+                            continue; 
+                        }
+
+                        foreach (var film in filmid) 
+                        {
+                          
+                            if (film.Žanr.ToLower() == zanr.ToLower()) //проверка на жанр
+                            {
+                                leitud = true; 
+                            }
+                        }
+
+                        if (leitud == true) 
+                        {
+                            tulem[zanr] = new List<Film>(); //создаём список фильмов для выбранного жанра
+
+                            foreach (var item in filmid) 
+                            {
+                                // если жанр фильма совпадает с введённым
+                                if (item.Žanr.ToLower() == zanr.ToLower())
+                                {
+                                    tulem[zanr].Add(item); // добавляем фильм в список словаря
+                                }
+                            }
+
+                            visual.palka();
+                            Console.WriteLine($"Leitud filmid Žanr {zanr}:");
+                            visual.palka();
+
+                            foreach (var film in tulem[zanr]) 
+                            {                                
+                                Console.WriteLine($"{film.Pealkiri}, {film.Aasta}, {film.Žanr}");
+                            }
+                            visual.palka();
+                        }
+                        else
+                        {
+                            visual.palka();
+                            Console.WriteLine("Selle žanriga filme ei leitud");
+                            visual.palka();
+                        }
+
+
+
+
+                        //kordus  //повтор
+                        int valik1 = 0;
+                        try
+                        {
+                            visual.palka();
+                            Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                            visual.palka();
+                            valik1 = int.Parse(Console.ReadLine());
+
+                            Console.Clear();
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                        if (valik1 == 1)
+                        {
+                            continue;
+                        }
+                        if (valik1 == 2)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            visual.palka();
+                            Console.WriteLine("proovige uuesti");
+                            continue;
+                        }
+                    }
+
+
+
+
+                }
+                else if (valik == 4)
+                {
+                    break;
+                }
+                else
+                {
+                    visual.palka();
+                    Console.WriteLine("proovige uuesti");
+                    visual.palka();
+                    continue;
+                }
+            }
+        } 
+
+        public static void Ülesanne5() //5
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("kirjuta oma 5 arv");
+                    List<double> list = new List<double>();
+                    double arvlist = 0;
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Console.WriteLine($"kirjuta oma {i + 1}");
+                        arvlist = double.Parse(Console.ReadLine());
+                    }
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
             }
         } 
     }
