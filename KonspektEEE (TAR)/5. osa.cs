@@ -56,6 +56,33 @@ namespace KonspektEEE__TAR_
         public List<int> Hinded { get; set; }
     }
 
+    class Lemmikloom //6
+    {
+        public string Nimi { get; set; }
+        public string Liik { get; set; }
+        public int Vanus { get; set; }
+
+        public Lemmikloom(string Nimi, string Liik, int Vanus)
+        {
+            this.Nimi = Nimi;
+            this.Liik = Liik;
+            this.Vanus = Vanus;
+        }
+    }
+
+    class Valuuta //7
+    {
+        public string Nimetus { get; set; }
+        public double KurssEurSuhte { get; set; }
+
+        public Valuuta(string Nimetus, double KurssEurSuhte)
+        {
+            this.Nimetus = Nimetus;
+
+            this.KurssEurSuhte = KurssEurSuhte;
+        }
+    }
+
     internal class ClassOsa5
     {
         public static void startOsa5()
@@ -73,8 +100,9 @@ namespace KonspektEEE__TAR_
                     Console.WriteLine("4");
                     Console.WriteLine("5");
                     Console.WriteLine("6");
-                    Console.WriteLine("7 - teoria");
-                    Console.WriteLine("8 - lõpp");
+                    Console.WriteLine("7");
+                    Console.WriteLine("8 - teoria");
+                    Console.WriteLine("9 - lõpp");
                     Console.WriteLine("------------------------------");
                     Console.WriteLine("");
                     int txt = int.Parse(Console.ReadLine());
@@ -94,15 +122,40 @@ namespace KonspektEEE__TAR_
                             Ülesanne4();
                             break;
                         case 5:
-
+                            Ülesanne5();
                             break;
                         case 6:
-
+                            Ülesanne6();
                             break;
                         case 7:
-                            teoria();
+                            visual.palka();
+                            Console.WriteLine("kirjuta oma valuutanimi näiteks (EUR, USD)");
+                            visual.palka();
+
+                            string valuutanimi = Console.ReadLine();
+                            Console.Clear();
+
+                            int summa = 0;
+                            try
+                            {
+                                visual.palka();
+                                Console.WriteLine("kirjuta oma summa");
+                                visual.palka();
+
+                                summa = int.Parse(Console.ReadLine());
+                                Console.Clear();
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine("kirjuta omna arv");
+                                continue;
+                            }
+                            Ülesanne7(summa, valuutanimi);
                             break;
                         case 8:
+                            teoria();
+                            break;
+                        case 9:
                             return;
                         default:
                             Console.WriteLine("");
@@ -844,99 +897,68 @@ namespace KonspektEEE__TAR_
                 }
                 else if (valik == 2)
                 {
+                    List<int> uuefilm = new List<int>(); //лист с годами
+                    int uuefilm2 = 0;
+
+                    foreach (var item in filmid)
+                    {
+                        uuefilm.Add(item.Aasta);  //добовление всех годов 
+                    }
+
+                    uuefilm2 = uuefilm.Max(); //самый большой год
+
+                    visual.palka();
+                    Console.WriteLine($"kõige uue film on");
+                    foreach (var item in filmid)
+                    {
+                        if (uuefilm2 == item.Aasta) //если самый большой гот соответствует item то выводит данные
+                        {
+                            Console.WriteLine($"pealkiri {item.Pealkiri}, aasta {item.Aasta}, Žanr {item.Žanr}");
+                        }
+                    }
+                }
+                else if (valik == 3)
+                {
                     while (true)
                     {
-                        List<int> uuefilm = new List<int>(); //лист с годами
-                        int uuefilm2 = 0;
+                        Dictionary<string, List<Film>> tulem = new Dictionary<string, List<Film>>();
+                        string zanr = "";
+                        bool leitud = false;
 
-                        foreach (var item in filmid)
-                        {
-                            uuefilm.Add(item.Aasta);  //добовление всех годов 
-                        }
-
-                        uuefilm2 = uuefilm.Max(); //самый большой год
-
-                        visual.palka();
-                        Console.WriteLine($"kõige uue film on");
-                        foreach (var item in filmid)
-                        {
-                            if (uuefilm2 == item.Aasta) //если самый большой гот соответствует item то выводит данные
-                            {
-                                Console.WriteLine($"pealkiri {item.Pealkiri}, aasta {item.Aasta}, Žanr {item.Žanr}");
-                            }
-                        }
-
-
-
-
-
-                        //kordus  //повтор
-                        int valik1 = 0;
                         try
                         {
                             visual.palka();
-                            Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                            Console.WriteLine("Valige filmi žanr:"); // просим пользователя ввести жанр
                             visual.palka();
-                            valik1 = int.Parse(Console.ReadLine());
-
+                            zanr = Console.ReadLine();
                             Console.Clear();
                         }
                         catch (Exception)
                         {
                             continue;
                         }
-                        if (valik1 == 1)
-                        {
-                            continue;
-                        }
-                        if (valik1 == 2)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            visual.palka();
-                            Console.WriteLine("proovige uuesti");
-                            continue;
-                        }
-                    }
-                    
-                }
-                else if (valik == 3)
-                {
-                    while (true)
-                    {
-                        Dictionary<string, List<Film>> tulem = new Dictionary<string, List<Film>>(); 
-                        string zanr = ""; 
-                        bool leitud = false; 
 
-                        try
+                        foreach (var film in filmid)
                         {
-                            visual.palka(); 
-                            Console.WriteLine("Valige filmi žanr:"); // просим пользователя ввести жанр
-                            visual.palka(); 
-                            zanr = Console.ReadLine(); 
-                            Console.Clear(); 
-                        }
-                        catch (Exception)
-                        {
-                            continue; 
-                        }
 
-                        foreach (var film in filmid) 
-                        {
-                          
                             if (film.Žanr.ToLower() == zanr.ToLower()) //проверка на жанр
                             {
-                                leitud = true; 
+                                leitud = true;
                             }
                         }
 
-                        if (leitud == true) 
+
+
+
+
+
+
+
+                        if (leitud == true)
                         {
                             tulem[zanr] = new List<Film>(); //создаём список фильмов для выбранного жанра
 
-                            foreach (var item in filmid) 
+                            foreach (var item in filmid)
                             {
                                 // если жанр фильма совпадает с введённым
                                 if (item.Žanr.ToLower() == zanr.ToLower())
@@ -949,8 +971,8 @@ namespace KonspektEEE__TAR_
                             Console.WriteLine($"Leitud filmid Žanr {zanr}:");
                             visual.palka();
 
-                            foreach (var film in tulem[zanr]) 
-                            {                                
+                            foreach (var film in tulem[zanr])
+                            {
                                 Console.WriteLine($"{film.Pealkiri}, {film.Aasta}, {film.Žanr}");
                             }
                             visual.palka();
@@ -965,7 +987,8 @@ namespace KonspektEEE__TAR_
 
 
 
-                        //kordus  //повтор
+
+                        //kordus
                         int valik1 = 0;
                         try
                         {
@@ -994,11 +1017,9 @@ namespace KonspektEEE__TAR_
                             Console.WriteLine("proovige uuesti");
                             continue;
                         }
+
+
                     }
-
-
-
-
                 }
                 else if (valik == 4)
                 {
@@ -1018,23 +1039,249 @@ namespace KonspektEEE__TAR_
         {
             while (true)
             {
+                List<double> list1 = new List<double>();
                 try
                 {
-                    Console.WriteLine("kirjuta oma 5 arv");
-                    List<double> list = new List<double>();
+                    visual.palka();
+                    Console.WriteLine("kirjuta oma 5 arv");                
                     double arvlist = 0;
 
                     for (int i = 0; i < 5; i++)
                     {
+                        visual.palka();
                         Console.WriteLine($"kirjuta oma {i + 1}");
                         arvlist = double.Parse(Console.ReadLine());
+                        Console.Clear();
                     }
                 }
                 catch (Exception)
                 {
                     continue;
                 }
+
+                visual.palka();
+                Console.WriteLine("maksimaalse arv ob " + list1.Max());
+
+                Console.WriteLine("minimaalse arv on " + list1.Min());
+
+                Console.WriteLine("keskmine arv on " + list1.Average());
+
+                Console.WriteLine("kogu summa on " + list1.Sum());
+
+                double a = list1.Average();
+                int b = 0;
+                foreach (var item in list1)
+                {
+                    if (item > a)
+                    {
+                        b++;
+                    }
+                }
+
+                Console.WriteLine("arvu suuremad kui keskmine on" + b);
+                visual.palka();
+
+
+
+
+
+                //kordus
+                int valik1 = 0;
+                try
+                {
+                    visual.palka();
+                    Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                    visual.palka();
+                    valik1 = int.Parse(Console.ReadLine());
+
+                    Console.Clear();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+                if (valik1 == 1)
+                {
+                    continue;
+                }
+                if (valik1 == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    visual.palka();
+                    Console.WriteLine("proovige uuesti");
+                    continue;
+                }
             }
-        } 
+        }
+
+        public static void Ülesanne6() //6
+        {
+            List<Lemmikloom> list1 = new List<Lemmikloom>();
+            while (true)
+            {
+                visual.palka();
+                Console.WriteLine("kirjuta oma loom (Nimi, Liik, Vanus)");
+                Console.WriteLine("");
+
+                try
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        visual.palka();
+                        Console.WriteLine($"see on {i + 1} loom");
+                        Console.WriteLine("");
+
+                        Console.WriteLine("kirjuta oma Nimi loom");
+                        Console.WriteLine("");
+                        string nimi = Console.ReadLine();
+                        Console.WriteLine("");
+
+                        Console.WriteLine("Kirjuta oma Liik loom");
+                        Console.WriteLine("");
+                        string Liik = Console.ReadLine();
+                        Console.WriteLine("");
+
+                        Console.WriteLine("kirjuta oma loom Vanus");
+                        Console.WriteLine("");
+                        int vanus = int.Parse(Console.ReadLine());
+
+                        var pet = new Lemmikloom(nimi, Liik, vanus);
+                        list1.Add(pet);
+                        Console.Clear();
+                    }
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+
+                List<int> vanusA = new List<int>(); //возраст
+
+                visual.palka();
+                foreach (var item in list1)
+                {
+                    vanusA.Add(item.Vanus);
+                    if (item.Liik.ToLower() == "kass")
+                    {
+                        Console.WriteLine($"{item.Nimi}, {item.Liik}, {item.Vanus}");
+                    }
+                }
+                visual.palka();
+
+                Console.WriteLine("keskmine vanus on " + vanusA.Average());
+                Console.WriteLine("");
+                Console.WriteLine("kõige vanem loom on " + vanusA.Max());
+
+                visual.palka();
+
+
+
+
+                //kordus
+                int valik1 = 0;
+                try
+                {
+                    visual.palka();
+                    Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                    visual.palka();
+                    valik1 = int.Parse(Console.ReadLine());
+
+                    Console.Clear();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+                if (valik1 == 1)
+                {
+                    continue;
+                }
+                if (valik1 == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    visual.palka();
+                    Console.WriteLine("proovige uuesti");
+                    continue;
+                }
+            }
+           
+        }
+
+        public static void Ülesanne7(double sum, string valuutanimi) //7
+        { //л
+            while (true)
+            {
+                List<Valuuta> list1 = new List<Valuuta>
+            {
+                new Valuuta("EUR", 1.0),
+                new Valuuta("USD", 0.87),
+                new Valuuta("GBP", 1.17)
+            };
+
+
+                Valuuta valitud = list1.Find(v => v.Nimetus == valuutanimi);
+                if (valitud == null)
+                {
+                    Console.WriteLine("Valuutat ei leitud!");
+                    return;
+                }
+
+
+                visual.palka();
+                double eurod = sum * valitud.KurssEurSuhte;
+                Console.WriteLine($"see on {eurod} EUR");
+
+                Console.WriteLine("");
+
+                Valuuta usd = list1.Find(v => v.Nimetus == "USD");
+
+                if (usd != null)
+                {
+                    double usdSumma = eurod / usd.KurssEurSuhte;
+                    Console.WriteLine($"see on {usdSumma} USD");
+                }
+                visual.palka();
+
+
+
+
+
+                //kordus
+                int valik1 = 0;
+                try
+                {
+                    visual.palka();
+                    Console.WriteLine("Kas soovite seda korrata? (1. JAH/ 2. EI)");
+                    visual.palka();
+                    valik1 = int.Parse(Console.ReadLine());
+
+                    Console.Clear();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+                if (valik1 == 1)
+                {
+                    continue;
+                }
+                if (valik1 == 2)
+                {
+                    break;
+                }
+                else
+                {
+                    visual.palka();
+                    Console.WriteLine("proovige uuesti");
+                    continue;
+                }
+            }
+        }
     }
 }
