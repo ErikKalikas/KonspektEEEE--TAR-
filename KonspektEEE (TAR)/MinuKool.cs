@@ -11,7 +11,8 @@ namespace KonspektEEE__TAR_
         public List<Õpetaja> õpetajas { get; set; }
         public List<Õpilane> õpilanes { get; set; }
 
-        public void KuvaKõik()
+        // muudetud meetod: tehtud staatiliseks ja lisatud parameetrid
+        public static void KuvaKõik(List<Õpetaja> õpetajas, List<Õpilane> õpilanes)
         {
             Console.WriteLine("Õpetajad:");
 
@@ -19,7 +20,7 @@ namespace KonspektEEE__TAR_
             {
                 Console.WriteLine($"{õpetaja.Nimi} - {õpetaja.Aine} - {õpetaja.ArvutaPalk()}€");
             }
-
+            Console.WriteLine("");
             Console.WriteLine("Õpilased:");
 
             foreach (var õpilane in õpilanes)

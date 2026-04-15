@@ -59,10 +59,10 @@ namespace KonspektEEE__TAR_
             {
                 new MinuKool {õpetajas = õpetajaInfo, õpilanes = õpilaneInof}
             };
+            visual.palka();
 
 
-            
-
+            MinuKool.KuvaKõik(õpetajaInfo, õpilaneInof);
 
 
             visual.palka();
