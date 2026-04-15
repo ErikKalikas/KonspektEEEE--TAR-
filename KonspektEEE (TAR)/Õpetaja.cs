@@ -40,6 +40,7 @@ namespace KonspektEEE__TAR_
     {
         public double Tunnitasu { get; set; } //Почасовая оплата
         public int TunnidNädalas { get; set; } //Уроки в неделю
+        public string Aine { get; set; }
 
         public override void Kirjelda()
         {
