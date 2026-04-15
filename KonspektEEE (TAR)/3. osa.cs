@@ -82,29 +82,29 @@ namespace KonspektEEE__TAR_
 
         public static void Teoria()
         {
-            List<Isik> inimesed = new List<Isik>();
+            //List<Isik> inimesed = new List<Isik>();
 
-            for (int i = 0; i < 3; i++)
-            {
-                Console.Write("Sisesta nimi: ");
-                string nimi = Console.ReadLine();
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    Console.Write("Sisesta nimi: ");
+            //    string nimi = Console.ReadLine();
 
-                Console.Write("Sisesta vanus: ");
-                int vanus = int.Parse(Console.ReadLine());
+            //    Console.Write("Sisesta vanus: ");
+            //    int vanus = int.Parse(Console.ReadLine());
 
-                Isik uusIsik = new Isik();
-                uusIsik.Nimi = nimi;
-                uusIsik.Vanus = vanus;
+            //    Isik uusIsik = new Isik();
+            //    uusIsik.Nimi = nimi;
+            //    uusIsik.Vanus = vanus;
 
-                inimesed.Add(uusIsik);
-            }
+            //    inimesed.Add(uusIsik);
+            //}
 
-            Console.WriteLine("\nKõik inimesed tervitavad:\n");
+            //Console.WriteLine("\nKõik inimesed tervitavad:\n");
 
-            foreach (Isik isik in inimesed)
-            {
-                isik.Tervita();
-            }
+            //foreach (Isik isik in inimesed)
+            //{
+            //    isik.Tervita();
+            //}
 
 
             //------------------------------------------------------------------------

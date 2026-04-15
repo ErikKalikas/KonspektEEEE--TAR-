@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Channels;
 using KonspektEEE__TAR_;
@@ -23,9 +24,24 @@ namespace Naidis_IKTpv25
                 Console.WriteLine("3");
                 Console.WriteLine("4");
                 Console.WriteLine("5");
-                Console.WriteLine("6 - exit");
+                Console.WriteLine("6 - OOP");
+                Console.WriteLine("7 - exit");
                 Console.WriteLine("------------------------------");
-                int osa = int.Parse(Console.ReadLine());
+                int osa = 0;
+                try
+                {
+                    osa = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException e)
+                {
+                    Console.Clear();
+                    visual.palka();
+                    Console.WriteLine("Error, kirjuta number");                                    
+                    visual.palka();
+                    Console.WriteLine("\tEnter");
+                    string enter = Console.ReadLine();
+                    continue;
+                }
                 Console.Clear();
                 if (osa == 1)
                 {
@@ -107,6 +123,10 @@ namespace Naidis_IKTpv25
                     ClassOsa5.startOsa5();
                 }
                 else if (osa == 6)
+                {
+                    OOP.OOPTest();
+                }
+                else if (osa == 7)
                 {
                     return;
                 }

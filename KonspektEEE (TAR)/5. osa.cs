@@ -50,7 +50,7 @@ namespace KonspektEEE__TAR_
 
     }
     
-    class Õpilane
+    class Õpilane2
     {
         public string Nimi { get; set; }
         public List<int> Hinded { get; set; }
@@ -760,11 +760,11 @@ namespace KonspektEEE__TAR_
         {
             while (true)
             {
-                List<Õpilane> õpilane2 = new List<Õpilane>()
+                List<Õpilane2> õpilane2 = new List<Õpilane2>()
                 {
-                    new Õpilane { Nimi = "Maksim", Hinded = new List<int> { 3, 3, 3 } },
-                    new Õpilane { Nimi = "Nikita", Hinded = new List<int> { 5, 3, 4 } },
-                    new Õpilane { Nimi = "Johan", Hinded = new List<int> { 5, 5, 5 } }
+                    new Õpilane2 { Nimi = "Maksim", Hinded = new List<int> { 3, 3, 3 } },
+                    new Õpilane2 { Nimi = "Nikita", Hinded = new List<int> { 5, 3, 4 } },
+                    new Õpilane2 { Nimi = "Johan", Hinded = new List<int> { 5, 5, 5 } }
                 };
                 int valik1 = 0;
                 double keskh = 0;
