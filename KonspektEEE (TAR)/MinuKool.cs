@@ -18,14 +18,14 @@ namespace KonspektEEE__TAR_
 
             foreach (var õpetaja in õpetajas)
             {
-                Console.WriteLine($"{õpetaja.Nimi} - {õpetaja.Aine} - {õpetaja.ArvutaPalk()}€");
+                Console.WriteLine($"{õpetaja.Nimi} - Vanus: {õpetaja.Vanus} - {õpetaja.Aine} - {õpetaja.ArvutaPalk()}€");
             }
             Console.WriteLine("");
             Console.WriteLine("Õpilased:");
 
             foreach (var õpilane in õpilanes)
             {
-                Console.WriteLine($"{õpilane.Nimi} - {õpilane.Klass}. klass - {õpilane.Staatus}");
+                Console.WriteLine($"{õpilane.Nimi} - Vanus: {õpilane.Vanus} - {õpilane.Klass}. klass - {õpilane.Staatus}");
             }
         }
     }

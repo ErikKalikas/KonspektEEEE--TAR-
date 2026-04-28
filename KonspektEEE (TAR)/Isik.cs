@@ -59,11 +59,28 @@ namespace KonspektEEE__TAR_
     {
         public string Nimi { get; set; }
 
-        // Abstraktne meetod – sisu puudub, alamklassid PEAVAD selle ise looma
+        private int vanus;
+
+        public int Vanus
+        {
+            get { return vanus; }
+            set
+            {
+                if (value < 0 || value > 110)
+                    throw new ArgumentException("Vanus peab olema 0 kuni 110");
+
+                vanus = value;
+            }
+        }
+
         public abstract void Kirjelda();
     }
 
 
+
+    // Abstraktne meetod – sisu puudub, alamklassid PEAVAD selle ise looma
+
+    // Абстрактный метод — содержимое отсутствует, подклассы ДОЛЖНЫ создать его самостоятельно
 
     /*
         🎯 Вывод: Капсулирование защищает внутреннее состояние объекта.

@@ -59,7 +59,7 @@ namespace KonspektEEE__TAR_
 
         public override void Kirjelda()
         {
-            Console.WriteLine($"{Nimi} õpib: {Klass}. klassis. Vorm: {Staatus}");
+            Console.WriteLine($"{Nimi} õpib: {Klass} .Vanus: {Vanus} . klassis. Vorm: {Staatus}");
         }
     }
 

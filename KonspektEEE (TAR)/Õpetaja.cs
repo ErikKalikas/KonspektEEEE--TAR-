@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static KonspektEEE__TAR_.Interface1;
+using static KonspektEEE__TAR_.Interface2;
 
 namespace KonspektEEE__TAR_
 {
@@ -36,7 +37,7 @@ namespace KonspektEEE__TAR_
 
 
     // Õpetaja pärib Isik klassist JA rakendab ITööline liidest               //Учитель запрашивает данные об ученике из класса И использует интерфейс ITööline
-    public class Õpetaja : Isik, ITööline
+    public class Õpetaja : Isik, ITööline, IHindaja
     {
         public double Tunnitasu { get; set; } //Почасовая оплата
         public int TunnidNädalas { get; set; } //Уроки в неделю
@@ -45,7 +46,7 @@ namespace KonspektEEE__TAR_
         public override void Kirjelda()
         {
             double b = ArvutaPalk();
-            Console.WriteLine($"Õpetaja: {Nimi}. ArvutaPalk: {b}");
+            Console.WriteLine($"Õpetaja: {Nimi}. Vanus: {Vanus}. ArvutaPalk: {b}");
         }
 
         // Kohustuslik meetod liidesest                     //Обязательный метод интерфейса
@@ -53,6 +54,14 @@ namespace KonspektEEE__TAR_
         {
             return Tunnitasu * TunnidNädalas * 4; // Kuupalk
         }
+
+
+        public void Hinda(string Hind)
+        {
+            Console.WriteLine("Hind :" + Hind);
+        }
+
+        
     }
 }
 
