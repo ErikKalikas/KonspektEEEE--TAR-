@@ -146,7 +146,7 @@ namespace KonspektEEE__TAR_
                             Eriala = Eriala11,
                             Vanus = vanus11
                         };
-
+                        Koolihaldus kool = new Koolihaldus();
                         kool.LisaInimene(u2);
                         kool.KuvaKõik();
                     }
