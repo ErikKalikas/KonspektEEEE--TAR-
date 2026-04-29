@@ -53,46 +53,55 @@ namespace KonspektEEE__TAR_
             };
 
 
-
-
-            List<MinuKool> minuKools = new List<MinuKool>
+            //kuva õpelased ja õpetajad
             {
-                new MinuKool {õpetajas = õpetajaInfo, õpilanes = õpilaneInof}
-            };
+                List<MinuKool> minuKools = new List<MinuKool>
+                {
+                    new MinuKool {õpetajas = õpetajaInfo, õpilanes = õpilaneInof}
+                };
+                visual.palka();
+
+
+                MinuKool.KuvaKõik(õpetajaInfo, õpilaneInof);
+            }
+
+            //uue õpilane ja kuva sa
+            {
+                Üliõpilane u1 = new Üliõpilane() //4
+                {
+                    Nimi = "Mark",
+                    Kursus = 2,
+                    Staatus = Õppevorm.Päevane,
+                    Eriala = "IT",
+                    Vanus = 19
+                };
+
+                Koolihaldus kool = new Koolihaldus();
+                kool.LisaInimene(u1);
+                kool.KuvaKõik();
+            }
+
+            
+
             visual.palka();
 
-
-            MinuKool.KuvaKõik(õpetajaInfo, õpilaneInof);
-
-
-
-            Üliõpilane u1 = new Üliõpilane() //4
-            {
-                Nimi = "Mark",
-                Kursus = 2,
-                Staatus = Õppevorm.Päevane,
-                Eriala = "IT",
-                Vanus = 19
-            };
-            Koolihaldus kool = new Koolihaldus();
-            kool.LisaInimene(u1);
-            kool.KuvaKõik();
-
-            visual.palka();
-
-            //test 4 ül
+            //Harjutus 8
             {
                 while (true)
                 {
                     Console.WriteLine("Kirjuta sinu nimi");
+                    Console.WriteLine("");
                     string nimi11 = Console.ReadLine();
+                    visual.palka();
 
 
                     int vanus11 = 1;
                     try
                     {
                         Console.WriteLine("Kirjuta sinu vanus");
+                        Console.WriteLine("");
                         vanus11 = int.Parse(Console.ReadLine());
+                        visual.palka();
                     }
                     catch (Exception a)
                     {
@@ -106,7 +115,9 @@ namespace KonspektEEE__TAR_
                     try
                     {
                         Console.WriteLine("Kirjuta sinu kursus");
+                        Console.WriteLine("");
                         kursus11 = int.Parse(Console.ReadLine());
+                        visual.palka();
                     }
                     catch (Exception a)
                     {
@@ -117,11 +128,13 @@ namespace KonspektEEE__TAR_
                     }
 
                     Console.WriteLine("Kirjuta sinu Eriala");
+                    Console.WriteLine("");
                     string Eriala11 = Console.ReadLine();
+                    visual.palka();
 
 
 
-                   
+
 
                     try
                     {
@@ -160,6 +173,21 @@ namespace KonspektEEE__TAR_
                 
             }
 
+            //Harjutus 9
+            {
+                visual.palka();
+                Console.WriteLine("Kirjuta oma õpelane Nimi");
+                Console.WriteLine("");
+                string OtNimi = Console.ReadLine();
+
+                Koolihaldus.KuvaAinultÕpilased(OtNimi, õpilaneInof);
+            }
+
+            //Harjutus 10 
+            {
+                visual.palka();
+                Kursus.KuvaInfo(õpetajaInfo);
+            }
 
             visual.palka();
             Console.WriteLine("Enter");

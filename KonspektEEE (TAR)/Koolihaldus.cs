@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KonspektEEE__TAR_
 {
-    public class Koolihaldus
+    class Koolihaldus : MinuKool
     {
         // Kapseldatud list
         private List<Isik> inimesed = new List<Isik>();
@@ -44,6 +44,29 @@ namespace KonspektEEE__TAR_
                 {
                     isik.Kirjelda();
                 }
+            }
+        }
+
+
+        public static void KuvaAinultÕpilased(string otsitavNimi, List<Õpilane> õpilanes)
+        {
+            int i = 0;
+            Console.Clear();
+            visual.palka();
+            foreach (var õpilane in õpilanes)
+            { 
+                if (otsitavNimi == õpilane.Nimi)
+                {
+                    Console.WriteLine($"õpilane {õpilane.Nimi} on kool");
+                    Console.WriteLine("");
+                    õpilane.Kirjelda();
+                    i = 1;
+                }
+            }
+
+            if (i == 0)
+            {
+                Console.WriteLine("seda nime ei leitud");
             }
         }
     }
